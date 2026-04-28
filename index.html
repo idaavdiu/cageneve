@@ -433,19 +433,14 @@ body.sq .lang-fr{display:none}
     </div>
     <div>
       <div style="height:2rem"></div>
-      <form class="contact-form" onsubmit="sendMail(event)">
-        <div class="form-group"><label><span class="lang-sq">Emri juaj</span><span class="lang-fr">Votre nom</span></label><input type="text" id="cf-name" required></div>
-        <div class="form-group"><label>Email</label><input type="email" id="cf-email" required></div>
-        <div class="form-group"><label><span class="lang-sq">Mesazhi</span><span class="lang-fr">Message</span></label><textarea id="cf-message" required></textarea></div>
-        <button type="submit" class="btn-primary"><span class="lang-sq">Dërgo mesazhin</span><span class="lang-fr">Envoyer le message</span></button>
-      </form>
+      <a href="mailto:cageneve@gmail.com" class="btn-primary" style="margin-top:2rem;display:inline-block;text-decoration:none;text-align:center"><span class="lang-sq">Na shkruani email</span><span class="lang-fr">Envoyez-nous un email</span></a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo"><span class="lang-sq">Komuniteti Shqiptar i <span>Gjenevës</span></span><span class="lang-fr">Communauté Albanaise de <span>Genève</span></span></div>
-  <div><span class="lang-sq">© 2025 · Shoqatë jofitimprurëse · Gjenevë</span><span class="lang-fr">© 2025 · Association à but non lucratif · Genève</span></div>
+  <div><span class="lang-sq">© 2026 · Shoqatë jofitimprurëse · Gjenevë</span><span class="lang-fr">© 2026 · Association à but non lucratif · Genève</span></div>
   <div class="footer-langs">
     <a onclick="setLang('sq')" id="fl-sq" class="active">Shqip</a>
     <a onclick="setLang('fr')" id="fl-fr">Français</a>
@@ -453,15 +448,6 @@ body.sq .lang-fr{display:none}
 </footer>
 
 <script>
-function sendMail(e) {
-  e.preventDefault();
-  var name = document.getElementById('cf-name').value;
-  var email = document.getElementById('cf-email').value;
-  var message = document.getElementById('cf-message').value;
-  var subject = 'Kontakt nga ' + name;
-  var body = 'Emri: ' + name + '\nEmail: ' + email + '\n\nMesazhi:\n' + message;
-  window.location.href = 'mailto:cageneve@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-}
 function setLang(l) {
   document.body.className = l;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === l));
