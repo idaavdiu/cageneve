@@ -433,10 +433,10 @@ body.sq .lang-fr{display:none}
     </div>
     <div>
       <div style="height:2rem"></div>
-      <form class="contact-form" action="https://formspree.io/f/cageneve@gmail.com" method="POST">
-        <div class="form-group"><label><span class="lang-sq">Emri juaj</span><span class="lang-fr">Votre nom</span></label><input type="text" name="name" required></div>
-        <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
-        <div class="form-group"><label><span class="lang-sq">Mesazhi</span><span class="lang-fr">Message</span></label><textarea name="message" required></textarea></div>
+      <form class="contact-form" onsubmit="sendMail(event)">
+        <div class="form-group"><label><span class="lang-sq">Emri juaj</span><span class="lang-fr">Votre nom</span></label><input type="text" id="cf-name" required></div>
+        <div class="form-group"><label>Email</label><input type="email" id="cf-email" required></div>
+        <div class="form-group"><label><span class="lang-sq">Mesazhi</span><span class="lang-fr">Message</span></label><textarea id="cf-message" required></textarea></div>
         <button type="submit" class="btn-primary"><span class="lang-sq">Dërgo mesazhin</span><span class="lang-fr">Envoyer le message</span></button>
       </form>
     </div>
@@ -453,6 +453,15 @@ body.sq .lang-fr{display:none}
 </footer>
 
 <script>
+function sendMail(e) {
+  e.preventDefault();
+  var name = document.getElementById('cf-name').value;
+  var email = document.getElementById('cf-email').value;
+  var message = document.getElementById('cf-message').value;
+  var subject = 'Kontakt nga ' + name;
+  var body = 'Emri: ' + name + '\nEmail: ' + email + '\n\nMesazhi:\n' + message;
+  window.location.href = 'mailto:cageneve@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
 function setLang(l) {
   document.body.className = l;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase() === l));
