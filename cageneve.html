@@ -22,6 +22,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(250,250,248,0.97
 .lang-btn{font-size:11px;font-weight:500;padding:5px 11px;border:none;cursor:pointer;border-radius:1px;transition:all 0.2s;background:transparent;color:var(--gray)}
 .lang-btn.active{background:var(--red);color:white}
 .nav-cta{background:var(--red);color:white;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:7px 14px;border:none;cursor:pointer;text-decoration:none;display:inline-block}
+.hamburger{display:none}
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--black);padding:80px 3rem 4rem;position:relative;overflow:hidden;text-align:center}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a 0%,#2d1a1a 50%,#1a1a1a 100%)}
 .hero-emblem{position:relative;z-index:2;width:200px;height:200px;overflow:hidden;border:3px solid rgba(192,57,43,0.5);margin:0 auto 2rem}
@@ -124,7 +125,10 @@ body.sq .lang-sq{display:block}
 body.sq .lang-fr{display:none}
 @media(max-width:960px){
   nav{padding:0 1rem}
-  .nav-links{display:none}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(250,250,248,0.98);border-bottom:1px solid #e0ddd8;padding:1rem 1.5rem;gap:0.8rem}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none}
+  .hamburger span{width:22px;height:2px;background:var(--black);display:block}
   section{padding:4rem 1.5rem}
   .hero{padding:80px 1.5rem 3rem}
   .hero-stats{gap:2rem;flex-wrap:wrap}
@@ -139,7 +143,8 @@ body.sq .lang-fr{display:none}
 
 <nav>
   <a href="#" class="nav-logo">CAG<span>E</span>NEVE</a>
-  <ul class="nav-links">
+  <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  <ul class="nav-links" onclick="this.classList.remove('open')">
     <li><a href="#about"><span class="lang-sq">Rreth nesh</span><span class="lang-fr">À propos</span></a></li>
     <li><a href="#missions"><span class="lang-sq">Misioni</span><span class="lang-fr">Mission</span></a></li>
     <li><a href="#services"><span class="lang-sq">Shërbime</span><span class="lang-fr">Services</span></a></li>
