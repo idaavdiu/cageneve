@@ -433,12 +433,12 @@ body.sq .lang-fr{display:none}
     </div>
     <div>
       <div style="height:2rem"></div>
-      <div class="contact-form">
-        <div class="form-group"><label><span class="lang-sq">Emri juaj</span><span class="lang-fr">Votre nom</span></label><input type="text"><br></div>
-        <div class="form-group"><label>Email</label><input type="email"></div>
-        <div class="form-group"><label><span class="lang-sq">Mesazhi</span><span class="lang-fr">Message</span></label><textarea></textarea></div>
-        <button class="btn-primary"><span class="lang-sq">Dërgo mesazhin</span><span class="lang-fr">Envoyer le message</span></button>
-      </div>
+      <form class="contact-form" action="https://formspree.io/f/cageneve@gmail.com" method="POST">
+        <div class="form-group"><label><span class="lang-sq">Emri juaj</span><span class="lang-fr">Votre nom</span></label><input type="text" name="name" required></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
+        <div class="form-group"><label><span class="lang-sq">Mesazhi</span><span class="lang-fr">Message</span></label><textarea name="message" required></textarea></div>
+        <button type="submit" class="btn-primary"><span class="lang-sq">Dërgo mesazhin</span><span class="lang-fr">Envoyer le message</span></button>
+      </form>
     </div>
   </div>
 </section>
