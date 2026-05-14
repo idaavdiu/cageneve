@@ -33,14 +33,14 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(250,250,248,0.97
 .hero-tag{display:inline-block;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);border:1px solid var(--red);padding:5px 14px;margin-bottom:1.5rem;position:relative;z-index:2}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;line-height:1.05;color:white;margin-bottom:1.2rem;position:relative;z-index:2}
 .hero h1 strong{font-weight:600;color:#f0e8e8}
-.hero-sub{font-size:15px;line-height:1.8;color:#888;max-width:560px;margin:0 auto 2.5rem;position:relative;z-index:2}
+.hero-sub{font-size:15px;line-height:1.8;color:#d4d4d4;max-width:560px;margin:0 auto 2.5rem;position:relative;z-index:2}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;margin-bottom:3rem}
 .btn-primary{background:var(--red);color:white;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-secondary{background:transparent;color:white;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 32px;border:1px solid rgba(255,255,255,0.3);text-decoration:none;display:inline-block}
 .btn-dark{background:transparent;color:var(--black);font-size:13px;letter-spacing:0.06em;text-transform:uppercase;padding:12px 28px;border:1px solid #ccc;text-decoration:none;display:inline-block}
 .hero-stats{position:relative;z-index:2;display:flex;gap:4rem;justify-content:center}
 .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:white;line-height:1}
-.stat-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#555;margin-top:4px}
+.stat-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#ffffff;margin-top:4px;font-weight:500}
 section{padding:5.5rem 3rem}
 .section-tag{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;display:block}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;margin-bottom:1.5rem}
@@ -53,7 +53,7 @@ section{padding:5.5rem 3rem}
 .about-eagle{font-size:140px;opacity:0.06;position:absolute;line-height:1}
 .about-date{position:relative;z-index:1;text-align:center;font-family:'Cormorant Garamond',serif}
 .about-date .year{font-size:5rem;font-weight:300;color:white;line-height:1}
-.about-date .city{font-size:1.5rem;font-weight:300;color:#888}
+.about-date .city{font-size:1.5rem;font-weight:300;color:#d4d4d4}
 .about-date .founded{font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-top:0.5rem}
 .missions{background:var(--light)}
 .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:#d0cdc8;max-width:1100px;margin:3rem auto 0}
@@ -73,11 +73,11 @@ section{padding:5.5rem 3rem}
 .price-cards{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
 .price-card{border:1px solid #2a2a2a;padding:1.5rem 2rem}
 .price-row{display:flex;justify-content:space-between;align-items:baseline}
-.price-label{font-size:14px;color:#888}
+.price-label{font-size:14px;color:#e0e0e0}
 .price-amount{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:white}
 .price-period{font-size:12px;color:#444;margin-left:4px}
-.price-desc{font-size:13px;color:#555;margin-top:0.5rem;line-height:1.6}
-.price-note{margin-top:1.5rem;font-size:13px;color:#555;line-height:1.7;border-left:2px solid var(--red);padding-left:1rem}
+.price-desc{font-size:13px;color:#c0c0c0;margin-top:0.5rem;line-height:1.6}
+.price-note{margin-top:1.5rem;font-size:13px;color:#c0c0c0;line-height:1.7;border-left:2px solid var(--red);padding-left:1rem}
 .board-section{background:var(--light)}
 .board-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1100px;margin:3rem auto 0}
 .board-card{background:var(--white);padding:2rem;border-top:3px solid #e8e5e0}
@@ -96,27 +96,40 @@ section{padding:5.5rem 3rem}
 .doc-link{font-size:13px;color:var(--red);text-decoration:none;display:flex;align-items:center;gap:6px}
 .doc-link::before{content:'↗';font-size:10px}
 .events-section{background:var(--light)}
-.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:3rem auto 0}
-.event-card{background:var(--white);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer}
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:3rem auto 0;padding:0 1rem}
+.event-card{background:var(--white);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;display:flex;flex-direction:column}
 .event-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12)}
-.event-card img{width:100%;height:auto;display:block}
+.event-card.no-flyer{cursor:default}
+.event-card.no-flyer:hover{transform:none;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.event-thumb{width:100%;height:200px;overflow:hidden;background:#eee;position:relative}
+.event-thumb img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.event-card.no-flyer .event-thumb{height:90px;background:linear-gradient(135deg,#eaeaea,#cfcfcf);display:flex;align-items:center;justify-content:center;color:#7a7a7a;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600}
+.event-meta{padding:1rem 1.1rem;border-top:1px solid #f0f0f0;flex:1}
+.event-date{color:var(--red);font-weight:700;font-size:0.82rem;letter-spacing:0.04em;margin-bottom:0.4rem}
+.event-title{font-size:0.92rem;line-height:1.4;color:#222;font-weight:500}
+.event-zoom{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.55);color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transition:opacity 0.2s}
+.event-card:hover .event-zoom{opacity:1}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;padding:2rem}
+.lightbox.show{display:flex}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 0 40px rgba(0,0,0,0.5)}
+.lightbox-close{position:fixed;top:1rem;right:1.5rem;color:#fff;font-size:2.5rem;cursor:pointer;user-select:none;line-height:1;background:none;border:none;font-weight:300}
 .contact-section{background:var(--black);color:white}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1100px;margin:0 auto;align-items:start}
 .contact-info{margin-top:2rem;display:flex;flex-direction:column;gap:1.5rem}
 .contact-item{display:flex;gap:1rem;align-items:flex-start}
 .contact-icon{width:36px;height:36px;background:var(--red);flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .contact-icon svg{width:16px;height:16px;fill:white}
-.contact-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#555}
+.contact-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#d4d4d4}
 .contact-value{font-size:15px;color:#ccc;margin-top:2px}
 .contact-form{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
 .form-group{display:flex;flex-direction:column;gap:0.4rem}
-.form-group label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#555}
+.form-group label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#d4d4d4}
 .form-group input,.form-group textarea{background:#111;border:1px solid #2a2a2a;padding:12px 16px;font-family:'DM Sans',sans-serif;font-size:14px;color:white;outline:none;width:100%}
 .form-group textarea{height:120px;resize:vertical}
-footer{background:#111;color:#444;padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:13px;border-top:1px solid #1e1e1e}
-.footer-logo{font-family:'Cormorant Garamond',serif;font-size:17px;color:#888}
+footer{background:#111;color:#a0a0a0;padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:13px;border-top:1px solid #1e1e1e}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:17px;color:#d4d4d4}
 .footer-logo span{color:var(--red)}
-.footer-langs a{color:#444;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;cursor:pointer;margin-left:1rem}
+.footer-langs a{color:#a0a0a0;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;cursor:pointer;margin-left:1rem}
 .footer-langs a.active{color:var(--red)}
 .lang-sq,.lang-fr{display:block}
 body.fr .lang-sq{display:none}
@@ -276,7 +289,7 @@ body.sq .lang-fr{display:none}
       <span class="section-tag" style="color:var(--red)"><span class="lang-sq">Anëtarësim</span><span class="lang-fr">Adhésion</span></span>
       <h2 class="section-title" style="color:white"><span class="lang-sq">Bëhu pjesë e familjes</span><span class="lang-fr">Rejoignez la famille</span></h2>
       <div class="divider"></div>
-      <p class="section-text" style="color:#888"><span class="lang-sq">Komuniteti ka nevojë për kontributin tuaj monetar, profesional, për eksperiencën tuaj, për punë vullnetare dhe për çfarëdo ndihmë tjetër që mund të ofroni.</span><span class="lang-fr">La communauté a besoin de votre contribution financière, professionnelle, de votre expérience, de votre travail bénévole et de toute autre aide que vous pouvez apporter.</span></p>
+      <p class="section-text" style="color:#d4d4d4"><span class="lang-sq">Komuniteti ka nevojë për kontributin tuaj monetar, profesional, për eksperiencën tuaj, për punë vullnetare dhe për çfarëdo ndihmë tjetër që mund të ofroni.</span><span class="lang-fr">La communauté a besoin de votre contribution financière, professionnelle, de votre expérience, de votre travail bénévole et de toute autre aide que vous pouvez apporter.</span></p>
       <p class="price-note"><span class="lang-sq">Në emër të Komunitetit Shqiptar askush nuk ka të drejtë të mbledhë para në dorë. Qasja ndaj të dhënave financiare është e garantuar në çdo kohë për çdo anëtar.</span><span class="lang-fr">Au nom de la Communauté Albanaise, personne n'a le droit de collecter de l'argent en mains propres. L'accès aux données financières est garanti à tout moment pour chaque membre.</span></p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
         <a href="Fletanetaresim-QR.pdf" class="btn-secondary"><span class="lang-sq">Shkarko formularin</span><span class="lang-fr">Feuille d'inscription</span></a>
@@ -300,12 +313,12 @@ body.sq .lang-fr{display:none}
         </div>
         <div>
           <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem"><span class="lang-sq">Paguaj anëtarësinë</span><span class="lang-fr">Payer l'adhésion</span></div>
-          <div style="font-size:14px;color:#888;line-height:1.8">
-            <div><strong style="color:#ccc">IBAN:</strong> <span style="color:#888">CH77 0900 0000 1276 3621 0</span></div>
-            <div><strong style="color:#ccc"><span class="lang-sq">Përfituesi:</span><span class="lang-fr">Bénéficiaire:</span></strong> Communauté Albanaise de Genève</div>
+          <div style="font-size:14px;color:#d4d4d4;line-height:1.8">
+            <div><strong style="color:#ffffff">IBAN:</strong> <span style="color:#d4d4d4">CH77 0900 0000 1276 3621 0</span></div>
+            <div><strong style="color:#ffffff"><span class="lang-sq">Përfituesi:</span><span class="lang-fr">Bénéficiaire:</span></strong> Communauté Albanaise de Genève</div>
             <div>1220 Les Avanchets</div>
           </div>
-          <div style="font-size:12px;color:#555;margin-top:0.75rem;line-height:1.6"><span class="lang-sq">Skanoni kodin QR me aplikacionin tuaj bankar për të paguar anëtarësinë.</span><span class="lang-fr">Scannez le code QR avec votre application bancaire pour payer l'adhésion.</span></div>
+          <div style="font-size:12px;color:#b0b0b0;margin-top:0.75rem;line-height:1.6"><span class="lang-sq">Skanoni kodin QR me aplikacionin tuaj bankar për të paguar anëtarësinë.</span><span class="lang-fr">Scannez le code QR avec votre application bancaire pour payer l'adhésion.</span></div>
         </div>
       </div>
     </div>
@@ -485,39 +498,54 @@ body.sq .lang-fr{display:none}
     <h2 class="section-title"><span class="lang-sq">Aktivitetet dhe manifestimet</span><span class="lang-fr">Activités et manifestations</span></h2>
   </div>
   <div class="events-grid">
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/388.png" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/387.png" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/386.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/385.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/384.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/383.png" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/382.png" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/381.png" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/378.png" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/377.png" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/377.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/375.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/374.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/372.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/364.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/363.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/361.PNG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/360.png" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/360.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/359.png" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/359.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/356.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/353.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/351.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/346.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/333.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/332.jpg" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/318.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/317.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/314.JPG" alt="Event"></div>
-    <div class="event-card"><img loading="lazy" src="Foto AFISHE/312.JPG" alt="Event"></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">08.05.2026</div><div class="event-title"><span class="lang-sq">Dita e Dëshmorëve</span><span class="lang-fr">Journée des Martyrs</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">06.03.2026</div><div class="event-title"><span class="lang-sq">Nisma «Zëri i Gruas LIRA»</span><span class="lang-fr">Initiative «Zëri i Gruas LIRA»</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">05.12.2025</div><div class="event-title"><span class="lang-sq">Sanxhaku, histori e dhembjes kombëtare</span><span class="lang-fr">Sandjak, histoire de la douleur nationale</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">22.11.2025</div><div class="event-title"><span class="lang-sq">Festa e Flamurit</span><span class="lang-fr">Fête du Drapeau</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">19.09.2025</div><div class="event-title"><span class="lang-sq">EPER (Përfitimet plotësuese)</span><span class="lang-fr">EPER (Prestations complémentaires)</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">22.05.2025</div><div class="event-title"><span class="lang-sq">Pritja e Presidentes së Republikës së Kosovës</span><span class="lang-fr">Accueil de la Présidente de la République du Kosovo</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">11.04.2025</div><div class="event-title"><span class="lang-sq">EPERI (shtylla e dytë – LPP)</span><span class="lang-fr">EPERI (2e pilier – LPP)</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/388.png')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/388.png" alt="Stand Up Comedy"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">09.04.2025</div><div class="event-title"><span class="lang-sq">Stand Up Comedy – Esat Shabani &amp; Valina Muçolli</span><span class="lang-fr">Stand Up Comedy – Esat Shabani &amp; Valina Muçolli</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/387.png')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/387.png" alt="Shekulli i parë"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">04.04.2025</div><div class="event-title"><span class="lang-sq">Promovim libri «Shekulli i parë» – Sejmen Gjokoli</span><span class="lang-fr">Promotion du livre «Shekulli i parë» – Sejmen Gjokoli</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">28.03.2025</div><div class="event-title"><span class="lang-sq">EPERI (shtylla e parë e pleqërisë)</span><span class="lang-fr">EPERI (1er pilier de la vieillesse)</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">31.01.2025</div><div class="event-title"><span class="lang-sq">Promovimi i veprave të Emin Azemit</span><span class="lang-fr">Promotion des œuvres d'Emin Azemi</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">30.11.2024</div><div class="event-title"><span class="lang-sq">Festa e Flamurit</span><span class="lang-fr">Fête du Drapeau</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date"><span class="lang-sq">Maj 2024</span><span class="lang-fr">Mai 2024</span></div><div class="event-title"><span class="lang-sq">DIASPORA regjistrohu</span><span class="lang-fr">DIASPORA inscris-toi</span></div></div></div>
+    <div class="event-card no-flyer"><div class="event-thumb"><span class="lang-sq">Flyer së shpejti</span><span class="lang-fr">Flyer à venir</span></div><div class="event-meta"><div class="event-date">07.05.2024</div><div class="event-title"><span class="lang-sq">Shënimi i Ditës së Dëshmorëve – promovim i librit «Eskadronët e Vdekjes»</span><span class="lang-fr">Commémoration de la Journée des Martyrs – promotion du livre «Eskadronët e Vdekjes»</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/386.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/386.jpg" alt="Koncert Bilbili"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">29.03.2023</div><div class="event-title"><span class="lang-sq">Koncert «Bilbili» – Iso-Polifonia Shqiptare nga Vlora</span><span class="lang-fr">Concert «Bilbili» – Iso-Polyphonie Albanaise de Vlora</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/385.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/385.jpg" alt="Festa e Flamurit"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">26.11.2022</div><div class="event-title"><span class="lang-sq">Festa e Flamurit</span><span class="lang-fr">Fête du Drapeau</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/384.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/384.jpg" alt="Bolero në vilën e pleqve"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">18.06.2022</div><div class="event-title"><span class="lang-sq">«Bolero në vilën e pleqve» – FIFOG</span><span class="lang-fr">«Bolero në vilën e pleqve» – FIFOG</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/383.png')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/383.png" alt="Festa e Flamurit"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">28.11.2021</div><div class="event-title"><span class="lang-sq">Festa e Flamurit</span><span class="lang-fr">Fête du Drapeau</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/382.png')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/382.png" alt="Në kërkim të Idesë"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">19.11.2021</div><div class="event-title"><span class="lang-sq">Promovim «Në kërkim të Idesë» – Ali Sh. Mehmeti</span><span class="lang-fr">Promotion «Në kërkim të Idesë» – Ali Sh. Mehmeti</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/377.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/377.jpg" alt="The Flying Circus"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">26.06.2021</div><div class="event-title"><span class="lang-sq">«The Flying Circus» – FIFOG</span><span class="lang-fr">«The Flying Circus» – FIFOG</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/381.png')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/381.png" alt="Festa e Flamurit Hekurani"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">11.01.2020</div><div class="event-title"><span class="lang-sq">Festa e Flamurit – Hekurani</span><span class="lang-fr">Fête du Drapeau – Hekurani</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/360.png')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/360.png" alt="Kodi i Nderit"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">02.11.2019</div><div class="event-title"><span class="lang-sq">«Kodi i Nderit» – premierë në Gjenevë</span><span class="lang-fr">«Kodi i Nderit» – première à Genève</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/359.png')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/359.png" alt="Nostalgjia"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">27.10.2019</div><div class="event-title"><span class="lang-sq">«Nostalgjia» – monodramë arbëreshe, Mario Calivà</span><span class="lang-fr">«Nostalgjia» – monodrame arbëreshe, Mario Calivà</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/378.png')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/378.png" alt="Babushi"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">30.03.2019</div><div class="event-title"><span class="lang-sq">«Babushi» – film artistik</span><span class="lang-fr">«Babushi» – film artistique</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/375.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/375.jpg" alt="Një jetë në tri epoka"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">02.12.2018</div><div class="event-title"><span class="lang-sq">«Një jetë në tri epoka» – film dokumentar</span><span class="lang-fr">«Une vie en trois époques» – film documentaire</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/374.JPG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/374.JPG" alt="Festa e Flamurit Malësori"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">01.12.2018</div><div class="event-title"><span class="lang-sq">Festa e Flamurit – Malësori</span><span class="lang-fr">Fête du Drapeau – Malësori</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/372.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/372.jpg" alt="Portreti i Skënderbeut"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">04.05.2018</div><div class="event-title"><span class="lang-sq">Pëllumb Xhufi – «Portreti i vërtetë i Skënderbeut»</span><span class="lang-fr">Pëllumb Xhufi – «Le vrai portrait de Skënderbeu»</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/364.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/364.jpg" alt="Festa Flamurit Nimon Mushkolaj"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">25.11.2017</div><div class="event-title"><span class="lang-sq">Festa e Flamurit – Nimon Mushkolaj</span><span class="lang-fr">Fête du Drapeau – Nimon Mushkolaj</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/363.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/363.jpg" alt="Nëntori i dytë"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">05.11.2017</div><div class="event-title"><span class="lang-sq">«Nëntori i dytë» – film</span><span class="lang-fr">«Nëntori i dytë» – film</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/361.PNG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/361.PNG" alt="Gani Jakupi"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">09.06.2017</div><div class="event-title"><span class="lang-sq">Takim me Gani Jakupin – ilustrator dhe skenarist</span><span class="lang-fr">Rencontre avec Gani Jakupi – illustrateur et scénariste</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/360.JPG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/360.JPG" alt="Borëbardha"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">06.05.2017</div><div class="event-title"><span class="lang-sq">«Borëbardha dhe shtatë xhuxhët» – film vizatimor</span><span class="lang-fr">«Blanche-Neige et les sept nains» – film d'animation</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/359.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/359.jpg" alt="Misioni rus"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">19.03.2017</div><div class="event-title"><span class="lang-sq">Promovim «Misioni rus» – Ibrahim Kadriu</span><span class="lang-fr">Promotion «Misioni rus» – Ibrahim Kadriu</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/356.JPG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/356.JPG" alt="Takim këshilltarët komunal"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">25.02.2017</div><div class="event-title"><span class="lang-sq">Takim me këshilltarët komunal me origjinë shqiptare</span><span class="lang-fr">Rencontre avec les conseillers communaux d'origine albanaise</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/353.JPG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/353.JPG" alt="Festa Flamurit Malësori"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">26.11.2016</div><div class="event-title"><span class="lang-sq">Festa e Flamurit – Malësori</span><span class="lang-fr">Fête du Drapeau – Malësori</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/346.JPG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/346.JPG" alt="Apologjia e Sokratit"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">08.10.2016</div><div class="event-title"><span class="lang-sq">«Apologjia e Sokratit» – Mirush Kabashi</span><span class="lang-fr">«L'Apologie de Socrate» – Mirush Kabashi</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/333.JPG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/333.JPG" alt="Festa Flamurit Miranda Hashani"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">28.11.2015</div><div class="event-title"><span class="lang-sq">Festa e Flamurit – Miranda Hashani</span><span class="lang-fr">Fête du Drapeau – Miranda Hashani</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/332.jpg')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/332.jpg" alt="Mashtrimi i madh"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">19.06.2015</div><div class="event-title"><span class="lang-sq">«Mashtrimi i madh» – Bardhyl Mahmuti</span><span class="lang-fr">«Mashtrimi i madh» – Bardhyl Mahmuti</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/318.JPG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/318.JPG" alt="Dita e Gruas"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">08.03.2015</div><div class="event-title"><span class="lang-sq">Dita e Gruas – me Tinka Kurtin</span><span class="lang-fr">Journée de la Femme – avec Tinka Kurti</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/317.JPG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/317.JPG" alt="Z. Ibrahim dhe lulet e Kuranit"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">24.01.2015</div><div class="event-title"><span class="lang-sq">«Z. Ibrahim dhe lulet e Kuranit» – Mirush Kabashi</span><span class="lang-fr">«M. Ibrahim et les fleurs du Coran» – Mirush Kabashi</span></div></div></div>
+    <div class="event-card" onclick="showFlyer('Foto AFISHE/314.JPG')"><div class="event-thumb"><img loading="lazy" src="Foto AFISHE/314.JPG" alt="Festa Flamurit 102"><div class="event-zoom">⤢</div></div><div class="event-meta"><div class="event-date">22.11.2014</div><div class="event-title"><span class="lang-sq">Festa e Flamurit – 102 vjetori i Pavarësisë</span><span class="lang-fr">Fête du Drapeau – 102e anniversaire de l'Indépendance</span></div></div></div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="hideLightbox()">
+  <button class="lightbox-close" onclick="hideLightbox()" aria-label="Close">×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
@@ -526,7 +554,7 @@ body.sq .lang-fr{display:none}
       <span class="section-tag" style="color:var(--red)"><span class="lang-sq">Kontakt</span><span class="lang-fr">Contact</span></span>
       <h2 class="section-title" style="color:white"><span class="lang-sq">Na kontaktoni</span><span class="lang-fr">Contactez-nous</span></h2>
       <div class="divider"></div>
-      <p class="section-text" style="color:#888"><span class="lang-sq">Jemi të gatshëm t'ju ndihmojmë me çdo pyetje rreth anëtarësimit, aktiviteteve ose shërbimeve tona.</span><span class="lang-fr">Nous sommes à votre disposition pour toute question concernant l'adhésion, les activités ou nos services.</span></p>
+      <p class="section-text" style="color:#d4d4d4"><span class="lang-sq">Jemi të gatshëm t'ju ndihmojmë me çdo pyetje rreth anëtarësimit, aktiviteteve ose shërbimeve tona.</span><span class="lang-fr">Nous sommes à votre disposition pour toute question concernant l'adhésion, les activités ou nos services.</span></p>
       <div class="contact-info">
         <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div><div class="contact-label"><span class="lang-sq">Adresa</span><span class="lang-fr">Adresse</span></div><div class="contact-value">Genève, Suisse</div></div></div>
         <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div><div class="contact-label">Email</div><div class="contact-value">cageneve@gmail.com</div></div></div>
@@ -562,6 +590,21 @@ function setLang(l) {
   document.getElementById('fl-fr').classList.toggle('active', l === 'fr');
   document.documentElement.lang = l;
 }
+function showFlyer(src) {
+  var lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = src;
+  lb.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function hideLightbox(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('lightbox').classList.remove('show');
+  document.getElementById('lightbox-img').src = '';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') hideLightbox();
+});
 </script>
 </body>
 </html>
