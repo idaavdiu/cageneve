@@ -139,11 +139,12 @@ section{padding:5.5rem 3rem}
 .form-group textarea{height:120px;resize:vertical}
 footer{background:#111;color:#a0a0a0;padding:2.5rem 3rem;display:flex;flex-wrap:nowrap;justify-content:space-between;align-items:center;font-size:13px;border-top:1px solid #1e1e1e}
 .footer-spacer{flex:1}
-.footer-center{flex-shrink:0;text-align:center;color:#a0a0a0;white-space:nowrap;font-size:11px}
-.footer-center a{color:inherit;text-decoration:none}
-.footer-center .lang-sq,.footer-center .lang-fr{display:inline}
-body.fr .footer-center .lang-sq{display:none}
-body.sq .footer-center .lang-fr{display:none}
+.footer-copyright{flex-shrink:0;text-align:center;color:#a0a0a0;font-size:11px;display:flex;flex-direction:column;gap:0.25rem;line-height:1.4}
+.footer-copyright > div{white-space:nowrap}
+.footer-copyright a{color:inherit;text-decoration:none}
+.footer-copyright .lang-sq,.footer-copyright .lang-fr{display:inline}
+body.fr .footer-copyright .lang-sq{display:none}
+body.sq .footer-copyright .lang-fr{display:none}
 .footer-langs{flex:1;text-align:right}
 .footer-langs a{color:#a0a0a0;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;cursor:pointer;margin-left:1rem}
 .footer-langs a.active{color:var(--red)}
@@ -165,7 +166,7 @@ body.sq .lang-fr{display:none}
   .cards-grid,.board-grid,.docs-grid,.events-grid,.sponsors-grid{grid-template-columns:1fr}
   .qr-payment-card{flex-direction:column!important;text-align:center}
   footer{padding:1.5rem 1rem;gap:0.5rem;font-size:11px}
-  .footer-center{font-size:10px}
+  .footer-copyright{font-size:10px}
   .footer-langs a{margin-left:0.4rem;font-size:11px}
 }
 </style>
@@ -628,10 +629,15 @@ body.sq .lang-fr{display:none}
 
 <footer>
   <div class="footer-spacer"></div>
-  <div class="footer-center">
-    <span class="lang-sq">© 2026 · Shoqatë jofitimprurëse · Gjenevë · Faqja e krijuar nga Ida Avdiu – </span>
-    <span class="lang-fr">© 2026 · Association à but non lucratif · Genève · Site créé par Ida Avdiu – </span>
-    <a href="mailto:ida.avdiu@icloud.com">ida.avdiu@icloud.com</a>
+  <div class="footer-copyright">
+    <div>
+      <span class="lang-sq">© 2026 · Shoqatë jofitimprurëse · Gjenevë</span>
+      <span class="lang-fr">© 2026 · Association à but non lucratif · Genève</span>
+    </div>
+    <div>
+      <span class="lang-sq">Faqja e krijuar nga Ida Avdiu – <a href="mailto:ida.avdiu@icloud.com">ida.avdiu@icloud.com</a></span>
+      <span class="lang-fr">Site créé par Ida Avdiu – <a href="mailto:ida.avdiu@icloud.com">ida.avdiu@icloud.com</a></span>
+    </div>
   </div>
   <div class="footer-langs">
     <a onclick="setLang('sq')" id="fl-sq" class="active">Shqip</a>
