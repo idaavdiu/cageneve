@@ -9,21 +9,30 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--red:#C0392B;--black:#1a1a1a;--white:#FAFAF8;--gray:#6b6b6b;--light:#F4F2EE;--border:#e0ddd8}
 body{font-family:'DM Sans',Arial,sans-serif;background:var(--light);color:var(--black);min-height:100vh}
-header{background:var(--black);color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+header{background:var(--black);color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 header h1{font-size:16px;font-weight:600}
 header h1 span{color:var(--red)}
+header .header-right{display:flex;align-items:center;gap:.75rem}
 #logoutBtn{background:none;border:1px solid #555;color:#ccc;padding:6px 12px;border-radius:4px;cursor:pointer;font-size:13px}
 #logoutBtn:hover{border-color:#999;color:#fff}
 .wrap{max-width:900px;margin:0 auto;padding:1.5rem}
 .hidden{display:none !important}
 
+/* language switch */
+.lang-switch{display:flex;background:#f0ede8;border-radius:4px;padding:3px;gap:2px}
+header .lang-switch{background:#2a2a2a}
+.lang-btn{font-size:11px;font-weight:500;padding:5px 10px;border:none;cursor:pointer;border-radius:3px;background:transparent;color:var(--gray)}
+header .lang-btn{color:#aaa}
+.lang-btn.active{background:var(--red);color:#fff}
+
 /* login */
-#loginScreen{max-width:360px;margin:4rem auto;background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+#loginScreen{max-width:360px;margin:3rem auto 0;background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
 #loginScreen h2{margin-bottom:1rem;font-size:18px}
 #loginScreen input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:4px;font-size:14px;margin-bottom:.75rem}
 #loginScreen button{width:100%;padding:10px;background:var(--red);color:#fff;border:none;border-radius:4px;font-size:14px;cursor:pointer}
 #loginScreen button:disabled{opacity:.6;cursor:default}
 #loginError{color:var(--red);font-size:13px;margin-bottom:.75rem;min-height:1em}
+.login-lang-wrap{max-width:360px;margin:1.5rem auto 0;display:flex;justify-content:center}
 
 /* tabs */
 .tabs{display:flex;gap:.5rem;margin-bottom:1.25rem}
@@ -73,63 +82,77 @@ input[type=text],input[type=date],input[type=file],input[type=url],input[type=pa
 <body>
 
 <div id="loginScreen">
-  <h2>cageneve.ch — Verwaltung</h2>
+  <h2 data-i18n="loginHeading"></h2>
   <div id="loginError"></div>
-  <input type="password" id="passwordInput" placeholder="Passwort" autocomplete="current-password">
-  <button id="loginBtn">Anmelden</button>
+  <input type="password" id="passwordInput" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password">
+  <button id="loginBtn" data-i18n="loginBtn"></button>
+</div>
+<div class="login-lang-wrap">
+  <div class="lang-switch lang-switch-group">
+    <button class="lang-btn" data-lang="de">DE</button>
+    <button class="lang-btn" data-lang="sq">SQ</button>
+    <button class="lang-btn" data-lang="fr">FR</button>
+  </div>
 </div>
 
 <div id="app" class="hidden">
   <header>
-    <h1>cageneve<span>.ch</span> — Verwaltung</h1>
-    <button id="logoutBtn">Abmelden</button>
+    <h1>cageneve<span>.ch</span> — <span data-i18n="headerSuffix"></span></h1>
+    <div class="header-right">
+      <div class="lang-switch lang-switch-group">
+        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="sq">SQ</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
+      <button id="logoutBtn" data-i18n="logoutBtn"></button>
+    </div>
   </header>
 
   <div class="wrap">
     <div class="tabs">
-      <button class="tab-btn active" data-tab="flyers">Flyer</button>
-      <button class="tab-btn" data-tab="docs">Dokumente</button>
+      <button class="tab-btn active" data-tab="flyers" data-i18n="tabFlyers"></button>
+      <button class="tab-btn" data-tab="docs" data-i18n="tabDocs"></button>
     </div>
 
     <!-- FLYERS TAB -->
     <div id="tab-flyers">
       <div class="card">
-        <h3>Neuer Flyer</h3>
+        <h3 data-i18n="newFlyerHeading"></h3>
         <form id="newFlyerForm">
           <div class="row">
-            <div class="field"><label>Bild</label><input type="file" id="flyerFile" accept="image/*" required></div>
-            <div class="field"><label>Datum</label><input type="date" id="flyerDate" required></div>
+            <div class="field"><label data-i18n="labelImage"></label><input type="file" id="flyerFile" accept="image/*" required></div>
+            <div class="field"><label data-i18n="labelDate"></label><input type="date" id="flyerDate" required></div>
           </div>
           <div class="row">
-            <div class="field"><label>Titel (Albanisch)</label><input type="text" id="flyerTitleSq" required></div>
-            <div class="field"><label>Titel (Französisch)</label><input type="text" id="flyerTitleFr" required></div>
+            <div class="field"><label data-i18n="labelTitleSq"></label><input type="text" id="flyerTitleSq" required></div>
+            <div class="field"><label data-i18n="labelTitleFr"></label><input type="text" id="flyerTitleFr" required></div>
           </div>
           <div class="row">
-            <div class="field"><label>Video-Link (optional, YouTube)</label><input type="url" id="flyerVideo" placeholder="https://youtu.be/..."></div>
+            <div class="field"><label data-i18n="labelVideoOptional"></label><input type="url" id="flyerVideo" placeholder="https://youtu.be/..."></div>
           </div>
-          <button type="submit" class="btn btn-red">Hochladen</button>
+          <button type="submit" class="btn btn-red" data-i18n="btnUpload"></button>
           <div class="status-msg" id="flyerFormStatus"></div>
         </form>
       </div>
       <div class="card">
-        <h3>Bestehende Flyer</h3>
-        <div id="flyerList">Lädt…</div>
+        <h3 data-i18n="existingFlyersHeading"></h3>
+        <div id="flyerList" data-i18n="loading"></div>
       </div>
     </div>
 
     <!-- DOCUMENTS TAB -->
     <div id="tab-docs" class="hidden">
       <div class="card">
-        <h3>Neues Jahr anlegen</h3>
+        <h3 data-i18n="newYearHeading"></h3>
         <form id="newYearForm">
           <div class="row">
-            <div class="field"><label>Jahr</label><input type="text" id="yearInput" placeholder="2027" required pattern="[0-9]{4}"></div>
+            <div class="field"><label data-i18n="labelYear"></label><input type="text" id="yearInput" placeholder="2027" required pattern="[0-9]{4}"></div>
           </div>
-          <button type="submit" class="btn btn-ghost">Jahr-Box erstellen</button>
+          <button type="submit" class="btn btn-ghost" data-i18n="btnCreateYear"></button>
           <div class="status-msg" id="yearFormStatus"></div>
         </form>
       </div>
-      <div id="docYears">Lädt…</div>
+      <div id="docYears" data-i18n="loading"></div>
     </div>
   </div>
 </div>
@@ -143,6 +166,185 @@ const loginScreen = document.getElementById('loginScreen');
 const app = document.getElementById('app');
 const overlay = document.getElementById('overlay');
 
+// ---------------- I18N ----------------
+const STRINGS = {
+  de: {
+    pageTitle: 'cageneve.ch — Verwaltung',
+    loginHeading: 'cageneve.ch — Verwaltung',
+    passwordPlaceholder: 'Passwort',
+    loginBtn: 'Anmelden',
+    headerSuffix: 'Verwaltung',
+    logoutBtn: 'Abmelden',
+    tabFlyers: 'Flyer',
+    tabDocs: 'Dokumente',
+    newFlyerHeading: 'Neuer Flyer',
+    labelImage: 'Bild',
+    labelDate: 'Datum',
+    labelTitleSq: 'Titel (Albanisch)',
+    labelTitleFr: 'Titel (Französisch)',
+    labelVideoOptional: 'Video-Link (optional, YouTube)',
+    labelVideoOptionalShort: 'Video-Link (optional)',
+    btnUpload: 'Hochladen',
+    existingFlyersHeading: 'Bestehende Flyer',
+    loading: 'Lädt…',
+    noFlyers: 'Noch keine Flyer.',
+    btnEdit: 'Bearbeiten',
+    btnDelete: 'Löschen',
+    editFlyerTitle: 'Flyer bearbeiten',
+    btnCancel: 'Abbrechen',
+    btnSave: 'Speichern',
+    savingStatus: 'Wird gespeichert…',
+    confirmDeleteFlyer: 'Diesen Flyer wirklich löschen?',
+    errorPickImage: 'Bitte ein Bild wählen.',
+    uploadingImage: 'Lade Bild hoch…',
+    saving: 'Speichere…',
+    flyerUploaded: 'Flyer hochgeladen.',
+    newYearHeading: 'Neues Jahr anlegen',
+    labelYear: 'Jahr',
+    btnCreateYear: 'Jahr-Box erstellen',
+    noYearBoxes: 'Noch keine Jahr-Boxen.',
+    noDocsInYear: 'Keine Dokumente in diesem Jahr.',
+    labelDocPdf: 'Dokument (PDF)',
+    btnUploadDoc: 'Dokument hochladen',
+    btnDeleteYear: 'Jahr löschen',
+    editDocTitle: 'Dokument bearbeiten',
+    confirmDeleteDoc: 'Dieses Dokument wirklich löschen?',
+    confirmDeleteYear: 'Jahr-Box {year} wirklich löschen? (nur möglich wenn leer)',
+    errorPickFile: 'Bitte eine Datei wählen.',
+    uploadingFile: 'Lade Datei hoch…',
+    docUploaded: 'Dokument hochgeladen.',
+    yearCreated: 'Jahr-Box erstellt.',
+    errorPrefix: 'Fehler: '
+  },
+  sq: {
+    pageTitle: 'cageneve.ch — Administrim',
+    loginHeading: 'cageneve.ch — Administrim',
+    passwordPlaceholder: 'Fjalëkalimi',
+    loginBtn: 'Hyr',
+    headerSuffix: 'Administrim',
+    logoutBtn: 'Dilni',
+    tabFlyers: 'Afishe',
+    tabDocs: 'Dokumente',
+    newFlyerHeading: 'Afishe e re',
+    labelImage: 'Foto',
+    labelDate: 'Data',
+    labelTitleSq: 'Titulli (shqip)',
+    labelTitleFr: 'Titulli (frëngjisht)',
+    labelVideoOptional: 'Lidhje video (opsionale, YouTube)',
+    labelVideoOptionalShort: 'Lidhje video (opsionale)',
+    btnUpload: 'Ngarko',
+    existingFlyersHeading: 'Afishet ekzistuese',
+    loading: 'Duke u ngarkuar…',
+    noFlyers: 'Ende nuk ka afishe.',
+    btnEdit: 'Redakto',
+    btnDelete: 'Fshij',
+    editFlyerTitle: 'Redakto afishen',
+    btnCancel: 'Anulo',
+    btnSave: 'Ruaj',
+    savingStatus: 'Duke ruajtur…',
+    confirmDeleteFlyer: 'Fshij me të vërtetë këtë afishe?',
+    errorPickImage: 'Ju lutemi zgjidhni një foto.',
+    uploadingImage: 'Duke ngarkuar foton…',
+    saving: 'Duke ruajtur…',
+    flyerUploaded: 'Afishja u ngarkua.',
+    newYearHeading: 'Krijo vit të ri',
+    labelYear: 'Viti',
+    btnCreateYear: 'Krijo kutinë e vitit',
+    noYearBoxes: 'Ende nuk ka kuti vitesh.',
+    noDocsInYear: 'Nuk ka dokumente në këtë vit.',
+    labelDocPdf: 'Dokumenti (PDF)',
+    btnUploadDoc: 'Ngarko dokumentin',
+    btnDeleteYear: 'Fshij vitin',
+    editDocTitle: 'Redakto dokumentin',
+    confirmDeleteDoc: 'Fshij me të vërtetë këtë dokument?',
+    confirmDeleteYear: 'Fshij me të vërtetë kutinë e vitit {year}? (vetëm nëse është bosh)',
+    errorPickFile: 'Ju lutemi zgjidhni një skedar.',
+    uploadingFile: 'Duke ngarkuar skedarin…',
+    docUploaded: 'Dokumenti u ngarkua.',
+    yearCreated: 'Kutia e vitit u krijua.',
+    errorPrefix: 'Gabim: '
+  },
+  fr: {
+    pageTitle: 'cageneve.ch — Administration',
+    loginHeading: 'cageneve.ch — Administration',
+    passwordPlaceholder: 'Mot de passe',
+    loginBtn: 'Se connecter',
+    headerSuffix: 'Administration',
+    logoutBtn: 'Se déconnecter',
+    tabFlyers: 'Affiches',
+    tabDocs: 'Documents',
+    newFlyerHeading: 'Nouvelle affiche',
+    labelImage: 'Image',
+    labelDate: 'Date',
+    labelTitleSq: 'Titre (albanais)',
+    labelTitleFr: 'Titre (français)',
+    labelVideoOptional: 'Lien vidéo (optionnel, YouTube)',
+    labelVideoOptionalShort: 'Lien vidéo (optionnel)',
+    btnUpload: 'Télécharger',
+    existingFlyersHeading: 'Affiches existantes',
+    loading: 'Chargement…',
+    noFlyers: 'Aucune affiche pour l’instant.',
+    btnEdit: 'Modifier',
+    btnDelete: 'Supprimer',
+    editFlyerTitle: 'Modifier l’affiche',
+    btnCancel: 'Annuler',
+    btnSave: 'Enregistrer',
+    savingStatus: 'Enregistrement…',
+    confirmDeleteFlyer: 'Vraiment supprimer cette affiche ?',
+    errorPickImage: 'Veuillez choisir une image.',
+    uploadingImage: 'Téléchargement de l’image…',
+    saving: 'Enregistrement…',
+    flyerUploaded: 'Affiche téléchargée.',
+    newYearHeading: 'Créer une nouvelle année',
+    labelYear: 'Année',
+    btnCreateYear: 'Créer la case de l’année',
+    noYearBoxes: 'Aucune case d’année pour l’instant.',
+    noDocsInYear: 'Aucun document pour cette année.',
+    labelDocPdf: 'Document (PDF)',
+    btnUploadDoc: 'Télécharger le document',
+    btnDeleteYear: 'Supprimer l’année',
+    editDocTitle: 'Modifier le document',
+    confirmDeleteDoc: 'Vraiment supprimer ce document ?',
+    confirmDeleteYear: 'Vraiment supprimer la case de l’année {year} ? (seulement si elle est vide)',
+    errorPickFile: 'Veuillez choisir un fichier.',
+    uploadingFile: 'Téléchargement du fichier…',
+    docUploaded: 'Document téléchargé.',
+    yearCreated: 'Case de l’année créée.',
+    errorPrefix: 'Erreur : '
+  }
+};
+
+const LANG_KEY = 'cageneve_admin_lang';
+let lang = localStorage.getItem(LANG_KEY) || 'de';
+if (!STRINGS[lang]) lang = 'de';
+
+function t(key, vars) {
+  let s = (STRINGS[lang] && STRINGS[lang][key]) || STRINGS.de[key] || key;
+  if (vars) Object.keys(vars).forEach(function (k) { s = s.replace('{' + k + '}', vars[k]); });
+  return s;
+}
+
+function applyI18n() {
+  document.title = t('pageTitle');
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) { el.placeholder = t(el.dataset.i18nPlaceholder); });
+  document.querySelectorAll('.lang-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.lang === lang); });
+  // re-render dynamic lists (if already loaded) so their embedded labels update too
+  if (!app.classList.contains('hidden')) { loadFlyers(); loadDocs(); }
+}
+
+function setLang(l) {
+  lang = STRINGS[l] ? l : 'de';
+  localStorage.setItem(LANG_KEY, lang);
+  applyI18n();
+}
+
+document.querySelectorAll('.lang-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () { setLang(btn.dataset.lang); });
+});
+
+// ---------------- API HELPER ----------------
 function api(path, options) {
   options = options || {};
   options.headers = Object.assign({ 'Content-Type': 'application/json' }, options.headers || {});
@@ -154,7 +356,7 @@ function api(path, options) {
   return fetch(path, options).then(async function (res) {
     let data = null;
     try { data = await res.json(); } catch (e) {}
-    if (!res.ok) throw new Error((data && data.error) || ('Fehler ' + res.status));
+    if (!res.ok) throw new Error((data && data.error) || ('HTTP ' + res.status));
     return data;
   });
 }
@@ -179,6 +381,7 @@ function doLogin() {
   api('/api/login', { jsonBody: { password: pw } })
     .then(function () {
       loginScreen.classList.add('hidden');
+      document.querySelector('.login-lang-wrap').classList.add('hidden');
       app.classList.remove('hidden');
       loadFlyers();
       loadDocs();
@@ -191,6 +394,7 @@ document.getElementById('logoutBtn').addEventListener('click', function () {
   api('/api/logout', { method: 'POST' }).finally(function () {
     app.classList.add('hidden');
     loginScreen.classList.remove('hidden');
+    document.querySelector('.login-lang-wrap').classList.remove('hidden');
     document.getElementById('passwordInput').value = '';
   });
 });
@@ -209,11 +413,11 @@ document.querySelectorAll('.tab-btn').forEach(function (btn) {
 function openModal(title, fields, onSave) {
   const modal = document.createElement('div');
   modal.className = 'modal';
-  modal.innerHTML = '<h3>' + title + '</h3>' +
+  modal.innerHTML = '<h3>' + escapeHtml(title) + '</h3>' +
     fields.map(function (f) {
-      return '<div class="row"><label>' + f.label + '</label><input type="' + (f.type || 'text') + '" data-key="' + f.key + '" value="' + escapeHtml(f.value || '') + '"></div>';
+      return '<div class="row"><label>' + escapeHtml(f.label) + '</label><input type="' + (f.type || 'text') + '" data-key="' + f.key + '" value="' + escapeHtml(f.value || '') + '"></div>';
     }).join('') +
-    '<div class="modal-actions"><button class="btn btn-ghost" id="modalCancel">Abbrechen</button><button class="btn btn-red" id="modalSave">Speichern</button></div>' +
+    '<div class="modal-actions"><button class="btn btn-ghost" id="modalCancel">' + escapeHtml(t('btnCancel')) + '</button><button class="btn btn-red" id="modalSave">' + escapeHtml(t('btnSave')) + '</button></div>' +
     '<div class="status-msg" id="modalStatus"></div>';
   overlay.innerHTML = '';
   overlay.appendChild(modal);
@@ -226,7 +430,7 @@ function openModal(title, fields, onSave) {
     const statusEl = document.getElementById('modalStatus');
     const saveBtn = document.getElementById('modalSave');
     saveBtn.disabled = true;
-    setStatus(statusEl, 'Wird gespeichert…', true);
+    setStatus(statusEl, t('savingStatus'), true);
     Promise.resolve(onSave(values))
       .then(closeModal)
       .catch(function (e) { setStatus(statusEl, e.message, false); saveBtn.disabled = false; });
@@ -240,27 +444,27 @@ function closeModal() {
 // ---------------- FLYERS ----------------
 function loadFlyers() {
   const list = document.getElementById('flyerList');
-  list.textContent = 'Lädt…';
+  list.textContent = t('loading');
   api('/api/events').then(function (events) {
     events.sort(function (a, b) { return b.date.localeCompare(a.date); });
-    if (!events.length) { list.innerHTML = '<p style="color:var(--gray);font-size:13px">Noch keine Flyer.</p>'; return; }
+    if (!events.length) { list.innerHTML = '<p style="color:var(--gray);font-size:13px">' + escapeHtml(t('noFlyers')) + '</p>'; return; }
     list.innerHTML = events.map(function (e) {
       return '<div class="item" data-id="' + e.id + '">' +
         '<img src="' + escapeHtml(hrefFor(e.image)) + '" alt="">' +
         '<div class="info"><div class="title">' + escapeHtml(e.title_sq) + '</div>' +
-        '<div class="sub">' + (e.date_display_sq || e.date) + ' · ' + escapeHtml(e.title_fr) + '</div></div>' +
-        '<div class="actions"><button class="btn btn-ghost edit-flyer">Bearbeiten</button><button class="btn btn-danger del-flyer">Löschen</button></div>' +
+        '<div class="sub">' + escapeHtml(e.date_display_sq || e.date) + ' · ' + escapeHtml(e.title_fr) + '</div></div>' +
+        '<div class="actions"><button class="btn btn-ghost edit-flyer">' + escapeHtml(t('btnEdit')) + '</button><button class="btn btn-danger del-flyer">' + escapeHtml(t('btnDelete')) + '</button></div>' +
         '</div>';
     }).join('');
     list.querySelectorAll('.edit-flyer').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const id = btn.closest('.item').dataset.id;
         const ev = events.find(x => x.id === id);
-        openModal('Flyer bearbeiten', [
-          { key: 'date', label: 'Datum', type: 'date', value: ev.date },
-          { key: 'title_sq', label: 'Titel (Albanisch)', value: ev.title_sq },
-          { key: 'title_fr', label: 'Titel (Französisch)', value: ev.title_fr },
-          { key: 'video_url', label: 'Video-Link (optional)', value: ev.video_url || '' }
+        openModal(t('editFlyerTitle'), [
+          { key: 'date', label: t('labelDate'), type: 'date', value: ev.date },
+          { key: 'title_sq', label: t('labelTitleSq'), value: ev.title_sq },
+          { key: 'title_fr', label: t('labelTitleFr'), value: ev.title_fr },
+          { key: 'video_url', label: t('labelVideoOptionalShort'), value: ev.video_url || '' }
         ], function (values) {
           return api('/api/events', { method: 'PUT', jsonBody: Object.assign({ id: id }, values, { date_display_sq: null, date_display_fr: null }) })
             .then(loadFlyers);
@@ -270,11 +474,11 @@ function loadFlyers() {
     list.querySelectorAll('.del-flyer').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const id = btn.closest('.item').dataset.id;
-        if (!confirm('Diesen Flyer wirklich löschen?')) return;
+        if (!confirm(t('confirmDeleteFlyer'))) return;
         api('/api/events?id=' + encodeURIComponent(id), { method: 'DELETE' }).then(loadFlyers);
       });
     });
-  }).catch(function (e) { list.textContent = 'Fehler: ' + e.message; });
+  }).catch(function (e) { list.textContent = t('errorPrefix') + e.message; });
 }
 
 document.getElementById('newFlyerForm').addEventListener('submit', function (e) {
@@ -286,17 +490,17 @@ document.getElementById('newFlyerForm').addEventListener('submit', function (e) 
   const title_sq = document.getElementById('flyerTitleSq').value.trim();
   const title_fr = document.getElementById('flyerTitleFr').value.trim();
   const video_url = document.getElementById('flyerVideo').value.trim() || null;
-  if (!file) { setStatus(statusEl, 'Bitte ein Bild wählen.', false); return; }
+  if (!file) { setStatus(statusEl, t('errorPickImage'), false); return; }
 
   submitBtn.disabled = true;
-  setStatus(statusEl, 'Lade Bild hoch…', true);
+  setStatus(statusEl, t('uploadingImage'), true);
   upload('flyers/' + file.name, file, { access: 'public', handleUploadUrl: '/api/upload' })
     .then(function (blob) {
-      setStatus(statusEl, 'Speichere…', true);
+      setStatus(statusEl, t('saving'), true);
       return api('/api/events', { jsonBody: { image: blob.url, date, title_sq, title_fr, video_url } });
     })
     .then(function () {
-      setStatus(statusEl, 'Flyer hochgeladen.', true);
+      setStatus(statusEl, t('flyerUploaded'), true);
       e.target.reset();
       loadFlyers();
     })
@@ -307,28 +511,28 @@ document.getElementById('newFlyerForm').addEventListener('submit', function (e) 
 // ---------------- DOCUMENTS ----------------
 function loadDocs() {
   const container = document.getElementById('docYears');
-  container.textContent = 'Lädt…';
+  container.textContent = t('loading');
   api('/api/documents').then(function (years) {
     years.sort(function (a, b) { return b.year.localeCompare(a.year); });
-    if (!years.length) { container.innerHTML = '<p style="color:var(--gray);font-size:13px">Noch keine Jahr-Boxen.</p>'; return; }
+    if (!years.length) { container.innerHTML = '<p style="color:var(--gray);font-size:13px">' + escapeHtml(t('noYearBoxes')) + '</p>'; return; }
     container.innerHTML = years.map(function (y) {
       const docsHtml = y.docs.map(function (d) {
         return '<div class="item" data-year="' + y.year + '" data-id="' + d.id + '">' +
           '<div class="icon">📄</div>' +
           '<div class="info"><div class="title">' + escapeHtml(d.title_sq) + '</div><div class="sub">' + escapeHtml(d.title_fr) + '</div></div>' +
-          '<div class="actions"><button class="btn btn-ghost edit-doc">Bearbeiten</button><button class="btn btn-danger del-doc">Löschen</button></div>' +
+          '<div class="actions"><button class="btn btn-ghost edit-doc">' + escapeHtml(t('btnEdit')) + '</button><button class="btn btn-danger del-doc">' + escapeHtml(t('btnDelete')) + '</button></div>' +
           '</div>';
-      }).join('') || '<p style="color:var(--gray);font-size:13px;padding:.4rem 0">Keine Dokumente in diesem Jahr.</p>';
+      }).join('') || '<p style="color:var(--gray);font-size:13px;padding:.4rem 0">' + escapeHtml(t('noDocsInYear')) + '</p>';
 
       return '<div class="card year-box" data-year="' + y.year + '">' +
         '<div class="year-head"><h4>' + escapeHtml(y.year) + '<span class="year-sub">' + escapeHtml(y.subtitle_sq) + '</span></h4>' +
-        '<button class="btn-danger btn del-year" style="padding:4px 10px;font-size:11px">Jahr löschen</button></div>' +
+        '<button class="btn-danger btn del-year" style="padding:4px 10px;font-size:11px">' + escapeHtml(t('btnDeleteYear')) + '</button></div>' +
         docsHtml +
         '<form class="add-doc-form" style="margin-top:.75rem;border-top:1px solid var(--border);padding-top:.75rem">' +
-        '<div class="row"><div class="field"><label>Dokument (PDF)</label><input type="file" class="doc-file" accept="application/pdf" required></div></div>' +
-        '<div class="row"><div class="field"><label>Titel (Albanisch)</label><input type="text" class="doc-title-sq" required></div>' +
-        '<div class="field"><label>Titel (Französisch)</label><input type="text" class="doc-title-fr" required></div></div>' +
-        '<button type="submit" class="btn btn-red">Dokument hochladen</button>' +
+        '<div class="row"><div class="field"><label>' + escapeHtml(t('labelDocPdf')) + '</label><input type="file" class="doc-file" accept="application/pdf" required></div></div>' +
+        '<div class="row"><div class="field"><label>' + escapeHtml(t('labelTitleSq')) + '</label><input type="text" class="doc-title-sq" required></div>' +
+        '<div class="field"><label>' + escapeHtml(t('labelTitleFr')) + '</label><input type="text" class="doc-title-fr" required></div></div>' +
+        '<button type="submit" class="btn btn-red">' + escapeHtml(t('btnUploadDoc')) + '</button>' +
         '<div class="status-msg doc-form-status"></div>' +
         '</form>' +
         '</div>';
@@ -340,9 +544,9 @@ function loadDocs() {
         const year = item.dataset.year, id = item.dataset.id;
         const yearObj = years.find(y => y.year === year);
         const doc = yearObj.docs.find(d => d.id === id);
-        openModal('Dokument bearbeiten', [
-          { key: 'title_sq', label: 'Titel (Albanisch)', value: doc.title_sq },
-          { key: 'title_fr', label: 'Titel (Französisch)', value: doc.title_fr }
+        openModal(t('editDocTitle'), [
+          { key: 'title_sq', label: t('labelTitleSq'), value: doc.title_sq },
+          { key: 'title_fr', label: t('labelTitleFr'), value: doc.title_fr }
         ], function (values) {
           return api('/api/documents', { method: 'PUT', jsonBody: Object.assign({ year: year, id: id }, values) }).then(loadDocs);
         });
@@ -351,14 +555,14 @@ function loadDocs() {
     container.querySelectorAll('.del-doc').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const item = btn.closest('.item');
-        if (!confirm('Dieses Dokument wirklich löschen?')) return;
+        if (!confirm(t('confirmDeleteDoc'))) return;
         api('/api/documents?year=' + encodeURIComponent(item.dataset.year) + '&id=' + encodeURIComponent(item.dataset.id), { method: 'DELETE' }).then(loadDocs);
       });
     });
     container.querySelectorAll('.del-year').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const year = btn.closest('.year-box').dataset.year;
-        if (!confirm('Jahr-Box ' + year + ' wirklich löschen? (nur möglich wenn leer)')) return;
+        if (!confirm(t('confirmDeleteYear', { year: year }))) return;
         api('/api/documents?year=' + encodeURIComponent(year) + '&deleteYear=true', { method: 'DELETE' })
           .then(loadDocs)
           .catch(function (e) { alert(e.message); });
@@ -373,23 +577,23 @@ function loadDocs() {
         const file = form.querySelector('.doc-file').files[0];
         const title_sq = form.querySelector('.doc-title-sq').value.trim();
         const title_fr = form.querySelector('.doc-title-fr').value.trim();
-        if (!file) { setStatus(statusEl, 'Bitte eine Datei wählen.', false); return; }
+        if (!file) { setStatus(statusEl, t('errorPickFile'), false); return; }
 
         submitBtn.disabled = true;
-        setStatus(statusEl, 'Lade Datei hoch…', true);
+        setStatus(statusEl, t('uploadingFile'), true);
         upload('documents/' + year + '/' + file.name, file, { access: 'public', handleUploadUrl: '/api/upload' })
           .then(function (blob) {
-            setStatus(statusEl, 'Speichere…', true);
+            setStatus(statusEl, t('saving'), true);
             return api('/api/documents', { jsonBody: { action: 'add-doc', year, file: blob.url, title_sq, title_fr } });
           })
           .then(function () {
-            setStatus(statusEl, 'Dokument hochgeladen.', true);
+            setStatus(statusEl, t('docUploaded'), true);
             loadDocs();
           })
           .catch(function (err) { setStatus(statusEl, err.message, false); submitBtn.disabled = false; });
       });
     });
-  }).catch(function (e) { container.textContent = 'Fehler: ' + e.message; });
+  }).catch(function (e) { container.textContent = t('errorPrefix') + e.message; });
 }
 
 document.getElementById('newYearForm').addEventListener('submit', function (e) {
@@ -398,7 +602,7 @@ document.getElementById('newYearForm').addEventListener('submit', function (e) {
   const year = document.getElementById('yearInput').value.trim();
   api('/api/documents', { jsonBody: { action: 'create-year', year } })
     .then(function () {
-      setStatus(statusEl, 'Jahr-Box erstellt.', true);
+      setStatus(statusEl, t('yearCreated'), true);
       document.getElementById('yearInput').value = '';
       loadDocs();
     })
@@ -415,9 +619,12 @@ function escapeHtml(s) {
   });
 }
 
+applyI18n();
+
 // If already logged in (valid cookie), skip the login screen.
 api('/api/events').then(function () {
   loginScreen.classList.add('hidden');
+  document.querySelector('.login-lang-wrap').classList.add('hidden');
   app.classList.remove('hidden');
   loadFlyers();
   loadDocs();
