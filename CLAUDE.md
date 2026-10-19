@@ -46,6 +46,8 @@ Französisch (FR)**. Der Verwaltungsbereich ist zusätzlich auf **Deutsch (DE)**
 ## Aufbau
 
 Reine statische Website ohne Build-Schritt, plus Vercel Serverless Functions in `api/`.
+Vercel liefert jede Datei im Repo öffentlich aus. `vercel.json` leitet deshalb `/CLAUDE.md` auf
+die Startseite um; neue interne Dateien dort ebenfalls eintragen.
 
 - `index.html` und `cageneve.html` – die Homepage. **Beide Dateien müssen identisch bleiben**
   (jede Änderung in beiden machen und mit `diff -q index.html cageneve.html` prüfen).
