@@ -140,16 +140,6 @@
     "video_url": null
   },
   {
-    "id": "evt-2024-05-01-diaspora-regjistrohu-rekos-2024",
-    "date": "2024-05-01",
-    "date_display_sq": "Maj 2024",
-    "date_display_fr": "Mai 2024",
-    "image": "Foto AFISHE/maj 2024 DIASPORA regjistrohu.jpeg",
-    "title_sq": "DIASPORA regjistrohu – ReKos 2024",
-    "title_fr": "DIASPORA inscris-toi – ReKos 2024",
-    "video_url": null
-  },
-  {
     "id": "evt-2024-05-07-shenimi-i-dites-se-deshmoreve-promovim-i",
     "date": "2024-05-07",
     "date_display_sq": null,
@@ -157,6 +147,16 @@
     "image": "Foto AFISHE/7 maj 2024.jpeg",
     "title_sq": "Shënimi i Ditës së Dëshmorëve – promovim i librit «Eskadronët e Vdekjes» (Bardhyl Mahmuti)",
     "title_fr": "Commémoration de la Journée des Martyrs – promotion du livre «Eskadronët e Vdekjes» (Bardhyl Mahmuti)",
+    "video_url": null
+  },
+  {
+    "id": "evt-2024-05-01-diaspora-regjistrohu-rekos-2024",
+    "date": "2024-05-01",
+    "date_display_sq": "Maj 2024",
+    "date_display_fr": "Mai 2024",
+    "image": "Foto AFISHE/maj 2024 DIASPORA regjistrohu.jpeg",
+    "title_sq": "DIASPORA regjistrohu – ReKos 2024",
+    "title_fr": "DIASPORA inscris-toi – ReKos 2024",
     "video_url": null
   },
   {

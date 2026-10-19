@@ -10,7 +10,7 @@ module.exports = async function handler(req, res) {
     const jsonResponse = await handleUpload({
       body: req.body,
       request: req,
-      token: process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOBREADWRITETOKEN,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
       onBeforeGenerateToken: async function () {
         return {
           allowedContentTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/jpg', 'application/pdf'],
@@ -25,16 +25,6 @@ module.exports = async function handler(req, res) {
     return res.status(200).json(jsonResponse);
   } catch (err) {
     console.error('upload error:', err);
-    // TEMP diagnostics: describe the token's shape without revealing the secret
-    const describe = function (v) {
-      if (v == null) return 'nicht gesetzt';
-      return 'Länge ' + v.length + ', beginnt mit ' + JSON.stringify(v.slice(0, 19)) +
-        ', Unterstriche ' + (v.split('_').length - 1) + (/\s/.test(v) ? ', ENTHÄLT LEERZEICHEN' : '');
-    };
-    return res.status(400).json({
-      error: err.message,
-      BLOB_READ_WRITE_TOKEN: describe(process.env.BLOB_READ_WRITE_TOKEN),
-      BLOBREADWRITETOKEN: describe(process.env.BLOBREADWRITETOKEN)
-    });
+    return res.status(400).json({ error: err.message });
   }
 };

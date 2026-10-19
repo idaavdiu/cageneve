@@ -18,8 +18,8 @@
   function renderEvents(events) {
     const grid = document.querySelector('.events-grid');
     if (!grid) return;
-    const sorted = [...events].sort((a, b) => b.date.localeCompare(a.date));
-    grid.innerHTML = sorted.map(function (e) {
+    // Order is set by hand in the admin panel (drag & drop), so keep it as stored.
+    grid.innerHTML = events.map(function (e) {
       const dateHtml = e.date_display_sq
         ? '<span class="lang-sq">' + escapeHtml(e.date_display_sq) + '</span><span class="lang-fr">' + escapeHtml(e.date_display_fr) + '</span>'
         : escapeHtml(formatDate(e.date));

@@ -1,5 +1,5 @@
 const { requireAuth } = require('./_auth');
-const { getJsonFile, putJsonFile } = require('./_github');
+const { getJsonFile, putJsonFile, reorderById } = require('./_github');
 
 const FILE = 'data/events.json';
 
@@ -34,7 +34,10 @@ module.exports = async function handler(req, res) {
         title_fr: body.title_fr,
         video_url: body.video_url || null
       };
-      data.push(entry);
+      // The list order is the display order; slot the new flyer in before the
+      // first one with an older date so it lands roughly where it belongs.
+      const pos = data.findIndex(e => e.date < entry.date);
+      data.splice(pos === -1 ? data.length : pos, 0, entry);
       await putJsonFile(FILE, data, sha, `Flyer hinzugefügt: ${entry.title_sq}`);
       return res.status(200).json(entry);
     }
@@ -54,6 +57,13 @@ module.exports = async function handler(req, res) {
       return res.status(200).json(updated);
     }
 
+    if (req.method === 'PATCH') {
+      const { data, sha } = await getJsonFile(FILE);
+      const reordered = reorderById(data, (req.body || {}).ids);
+      await putJsonFile(FILE, reordered, sha, 'Flyer-Reihenfolge geändert');
+      return res.status(200).json({ ok: true });
+    }
+
     if (req.method === 'DELETE') {
       const id = req.query.id;
       if (!id) return res.status(400).json({ error: 'id fehlt.' });
@@ -65,7 +75,7 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true });
     }
 
-    res.setHeader('Allow', 'GET, POST, PUT, DELETE');
+    res.setHeader('Allow', 'GET, POST, PUT, PATCH, DELETE');
     return res.status(405).json({ error: 'Methode nicht erlaubt.' });
   } catch (err) {
     return res.status(500).json({ error: err.message });

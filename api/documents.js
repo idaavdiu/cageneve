@@ -1,5 +1,5 @@
 const { requireAuth } = require('./_auth');
-const { getJsonFile, putJsonFile } = require('./_github');
+const { getJsonFile, putJsonFile, reorderById } = require('./_github');
 
 const FILE = 'data/documents.json';
 const DEFAULT_SUBTITLE_SQ = 'Raportet e vitit';
@@ -78,6 +78,17 @@ module.exports = async function handler(req, res) {
       return res.status(200).json(doc);
     }
 
+    if (req.method === 'PATCH') {
+      const body = req.body || {};
+      if (!body.year) return res.status(400).json({ error: 'year fehlt.' });
+      const { data, sha } = await getJsonFile(FILE);
+      const yearBox = data.find(y => y.year === body.year);
+      if (!yearBox) return res.status(404).json({ error: 'Jahr nicht gefunden.' });
+      yearBox.docs = reorderById(yearBox.docs, body.ids);
+      await putJsonFile(FILE, data, sha, `Dokument-Reihenfolge geändert (${body.year})`);
+      return res.status(200).json({ ok: true });
+    }
+
     if (req.method === 'DELETE') {
       const { year, id, deleteYear } = req.query;
       if (!year) return res.status(400).json({ error: 'year fehlt.' });
@@ -102,7 +113,7 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true });
     }
 
-    res.setHeader('Allow', 'GET, POST, PUT, DELETE');
+    res.setHeader('Allow', 'GET, POST, PUT, PATCH, DELETE');
     return res.status(405).json({ error: 'Methode nicht erlaubt.' });
   } catch (err) {
     return res.status(500).json({ error: err.message });

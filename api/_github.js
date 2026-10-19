@@ -49,4 +49,17 @@ async function putJsonFile(path, data, sha, message) {
   return res.json();
 }
 
-module.exports = { getJsonFile, putJsonFile };
+// Reorders `items` to match `ids`. Throws if the two don't contain exactly
+// the same ids (e.g. someone added/deleted an entry in the meantime).
+function reorderById(items, ids) {
+  const changed = 'Die Liste hat sich geändert. Bitte Seite neu laden und erneut versuchen.';
+  if (!Array.isArray(ids) || ids.length !== items.length || new Set(ids).size !== ids.length) {
+    throw new Error(changed);
+  }
+  const byId = new Map(items.map(x => [x.id, x]));
+  const out = ids.map(id => byId.get(id));
+  if (out.some(x => !x)) throw new Error(changed);
+  return out;
+}
+
+module.exports = { getJsonFile, putJsonFile, reorderById };

@@ -66,6 +66,10 @@ input[type=text],input[type=date],input[type=file],input[type=url],input[type=pa
 .item .sub{font-size:12px;color:var(--gray)}
 .item .actions{display:flex;gap:.4rem;flex-shrink:0}
 .item .actions button{padding:5px 10px;font-size:12px}
+.drag-handle{cursor:grab;color:#aaa;font-size:20px;line-height:1;padding:.5rem .25rem;user-select:none;touch-action:none;flex-shrink:0}
+.drag-handle:hover{color:var(--black)}
+.item.drag-ghost{opacity:.35;background:var(--light)}
+.drag-hint{font-size:12px;color:var(--gray);margin:-.6rem 0 .6rem}
 
 .year-box{margin-bottom:1rem}
 .year-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}
@@ -136,6 +140,8 @@ input[type=text],input[type=date],input[type=file],input[type=url],input[type=pa
       </div>
       <div class="card">
         <h3 data-i18n="existingFlyersHeading"></h3>
+        <p class="drag-hint" data-i18n="dragHint"></p>
+        <div class="status-msg" id="flyerOrderStatus"></div>
         <div id="flyerList" data-i18n="loading"></div>
       </div>
     </div>
@@ -161,6 +167,7 @@ input[type=text],input[type=date],input[type=file],input[type=url],input[type=pa
 
 <script type="module">
 import { put } from 'https://esm.sh/@vercel/blob@2.8.2/client';
+import Sortable from 'https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/modular/sortable.esm.js';
 
 // Fetch the client token through our own api() helper so the server's real
 // error message is shown instead of the SDK's generic "Failed to retrieve the client token".
@@ -197,6 +204,9 @@ const STRINGS = {
     existingFlyersHeading: 'Bestehende Flyer',
     loading: 'Lädt…',
     noFlyers: 'Noch keine Flyer.',
+    dragHint: 'Reihenfolge ändern: Eintrag am ⠿-Griff ziehen. Wird automatisch gespeichert.',
+    savingOrder: 'Speichere Reihenfolge…',
+    orderSaved: 'Reihenfolge gespeichert. Die Website ist in ca. 1 Minute aktualisiert.',
     btnEdit: 'Bearbeiten',
     btnDelete: 'Löschen',
     editFlyerTitle: 'Flyer bearbeiten',
@@ -245,6 +255,9 @@ const STRINGS = {
     existingFlyersHeading: 'Afishet ekzistuese',
     loading: 'Duke u ngarkuar…',
     noFlyers: 'Ende nuk ka afishe.',
+    dragHint: 'Ndrysho renditjen: tërhiqe elementin te doreza ⠿. Ruhet automatikisht.',
+    savingOrder: 'Duke ruajtur renditjen…',
+    orderSaved: 'Renditja u ruajt. Faqja përditësohet për rreth 1 minutë.',
     btnEdit: 'Redakto',
     btnDelete: 'Fshij',
     editFlyerTitle: 'Redakto afishen',
@@ -293,6 +306,9 @@ const STRINGS = {
     existingFlyersHeading: 'Affiches existantes',
     loading: 'Chargement…',
     noFlyers: 'Aucune affiche pour l’instant.',
+    dragHint: 'Changer l’ordre : faites glisser l’élément par la poignée ⠿. Enregistré automatiquement.',
+    savingOrder: 'Enregistrement de l’ordre…',
+    orderSaved: 'Ordre enregistré. Le site est mis à jour dans environ 1 minute.',
     btnEdit: 'Modifier',
     btnDelete: 'Supprimer',
     editFlyerTitle: 'Modifier l’affiche',
@@ -450,21 +466,45 @@ function closeModal() {
   overlay.innerHTML = '';
 }
 
+// ---------------- DRAG & DROP ORDER ----------------
+// Makes the .item rows in `listEl` draggable by their handle and saves the
+// new order right away; on failure the list is reloaded from the server.
+function makeSortable(listEl, statusEl, save, reload) {
+  if (!listEl || listEl.querySelectorAll('.item').length < 2) return;
+  Sortable.create(listEl, {
+    handle: '.drag-handle',
+    draggable: '.item',
+    animation: 150,
+    ghostClass: 'drag-ghost',
+    onEnd: function (evt) {
+      if (evt.oldIndex === evt.newIndex) return;
+      const ids = Array.from(listEl.querySelectorAll('.item')).map(el => el.dataset.id);
+      setStatus(statusEl, t('savingOrder'), true);
+      save(ids)
+        .then(function () { setStatus(statusEl, t('orderSaved'), true); })
+        .catch(function (e) { reload(); setStatus(statusEl, e.message, false); });
+    }
+  });
+}
+
 // ---------------- FLYERS ----------------
 function loadFlyers() {
   const list = document.getElementById('flyerList');
   list.textContent = t('loading');
   api('/api/events').then(function (events) {
-    events.sort(function (a, b) { return b.date.localeCompare(a.date); });
     if (!events.length) { list.innerHTML = '<p style="color:var(--gray);font-size:13px">' + escapeHtml(t('noFlyers')) + '</p>'; return; }
     list.innerHTML = events.map(function (e) {
       return '<div class="item" data-id="' + e.id + '">' +
+        '<span class="drag-handle" aria-hidden="true">⠿</span>' +
         '<img src="' + escapeHtml(hrefFor(e.image)) + '" alt="">' +
         '<div class="info"><div class="title">' + escapeHtml(e.title_sq) + '</div>' +
         '<div class="sub">' + escapeHtml(e.date_display_sq || e.date) + ' · ' + escapeHtml(e.title_fr) + '</div></div>' +
         '<div class="actions"><button class="btn btn-ghost edit-flyer">' + escapeHtml(t('btnEdit')) + '</button><button class="btn btn-danger del-flyer">' + escapeHtml(t('btnDelete')) + '</button></div>' +
         '</div>';
     }).join('');
+    makeSortable(list, document.getElementById('flyerOrderStatus'), function (ids) {
+      return api('/api/events', { method: 'PATCH', jsonBody: { ids: ids } });
+    }, loadFlyers);
     list.querySelectorAll('.edit-flyer').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const id = btn.closest('.item').dataset.id;
@@ -527,6 +567,7 @@ function loadDocs() {
     container.innerHTML = years.map(function (y) {
       const docsHtml = y.docs.map(function (d) {
         return '<div class="item" data-year="' + y.year + '" data-id="' + d.id + '">' +
+          '<span class="drag-handle" aria-hidden="true">⠿</span>' +
           '<div class="icon">📄</div>' +
           '<div class="info"><div class="title">' + escapeHtml(d.title_sq) + '</div><div class="sub">' + escapeHtml(d.title_fr) + '</div></div>' +
           '<div class="actions"><button class="btn btn-ghost edit-doc">' + escapeHtml(t('btnEdit')) + '</button><button class="btn btn-danger del-doc">' + escapeHtml(t('btnDelete')) + '</button></div>' +
@@ -536,7 +577,9 @@ function loadDocs() {
       return '<div class="card year-box" data-year="' + y.year + '">' +
         '<div class="year-head"><h4>' + escapeHtml(y.year) + '<span class="year-sub">' + escapeHtml(y.subtitle_sq) + '</span></h4>' +
         '<button class="btn-danger btn del-year" style="padding:4px 10px;font-size:11px">' + escapeHtml(t('btnDeleteYear')) + '</button></div>' +
-        docsHtml +
+        (y.docs.length > 1 ? '<p class="drag-hint" style="margin:0 0 .4rem">' + escapeHtml(t('dragHint')) + '</p>' : '') +
+        '<div class="status-msg doc-order-status"></div>' +
+        '<div class="doc-list">' + docsHtml + '</div>' +
         '<form class="add-doc-form" style="margin-top:.75rem;border-top:1px solid var(--border);padding-top:.75rem">' +
         '<div class="row"><div class="field"><label>' + escapeHtml(t('labelDocPdf')) + '</label><input type="file" class="doc-file" accept="application/pdf" required></div></div>' +
         '<div class="row"><div class="field"><label>' + escapeHtml(t('labelTitleSq')) + '</label><input type="text" class="doc-title-sq" required></div>' +
@@ -547,6 +590,12 @@ function loadDocs() {
         '</div>';
     }).join('');
 
+    container.querySelectorAll('.year-box').forEach(function (box) {
+      const year = box.dataset.year;
+      makeSortable(box.querySelector('.doc-list'), box.querySelector('.doc-order-status'), function (ids) {
+        return api('/api/documents', { method: 'PATCH', jsonBody: { year: year, ids: ids } });
+      }, loadDocs);
+    });
     container.querySelectorAll('.edit-doc').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const item = btn.closest('.item');
