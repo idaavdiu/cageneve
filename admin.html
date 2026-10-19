@@ -32,6 +32,9 @@ header .lang-btn{color:#aaa}
 #loginScreen button{width:100%;padding:10px;background:var(--red);color:#fff;border:none;border-radius:4px;font-size:14px;cursor:pointer}
 #loginScreen button:disabled{opacity:.6;cursor:default}
 #loginError{color:var(--red);font-size:13px;margin-bottom:.75rem;min-height:1em}
+.captcha-q{display:block;font-size:14px;margin-bottom:.5rem}
+.captcha-q strong{font-size:18px;letter-spacing:.04em;white-space:nowrap}
+.captcha-new{display:inline-block;margin-top:.6rem;font-size:12px;color:var(--gray)}
 .login-lang-wrap{max-width:360px;margin:1.5rem auto 0;display:flex;justify-content:center}
 
 /* tabs */
@@ -88,8 +91,16 @@ input[type=text],input[type=date],input[type=file],input[type=url],input[type=pa
 <div id="loginScreen">
   <h2 data-i18n="loginHeading"></h2>
   <div id="loginError"></div>
-  <input type="password" id="passwordInput" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password">
-  <button id="loginBtn" data-i18n="loginBtn"></button>
+  <div id="captchaStep">
+    <label class="captcha-q"><span data-i18n="captchaLabel"></span> <strong id="captchaQuestion">…</strong> = ?</label>
+    <input type="text" id="captchaInput" inputmode="numeric" autocomplete="off" data-i18n-placeholder="captchaPlaceholder">
+    <button id="captchaBtn" data-i18n="captchaBtn"></button>
+    <a href="#" id="captchaNew" class="captcha-new" data-i18n="captchaNew"></a>
+  </div>
+  <div id="passwordStep" class="hidden">
+    <input type="password" id="passwordInput" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password">
+    <button id="loginBtn" data-i18n="loginBtn"></button>
+  </div>
 </div>
 <div class="login-lang-wrap">
   <div class="lang-switch lang-switch-group">
@@ -189,6 +200,10 @@ const STRINGS = {
     loginHeading: 'cageneve.ch — Verwaltung',
     passwordPlaceholder: 'Passwort',
     loginBtn: 'Anmelden',
+    captchaLabel: 'Sicherheitsfrage: Wie viel ist',
+    captchaPlaceholder: 'Antwort',
+    captchaBtn: 'Weiter',
+    captchaNew: '↻ Neue Aufgabe',
     headerSuffix: 'Verwaltung',
     logoutBtn: 'Abmelden',
     tabFlyers: 'Flyer',
@@ -240,6 +255,10 @@ const STRINGS = {
     loginHeading: 'cageneve.ch — Administrim',
     passwordPlaceholder: 'Fjalëkalimi',
     loginBtn: 'Hyr',
+    captchaLabel: 'Pyetje sigurie: Sa bën',
+    captchaPlaceholder: 'Përgjigja',
+    captchaBtn: 'Vazhdo',
+    captchaNew: '↻ Detyrë e re',
     headerSuffix: 'Administrim',
     logoutBtn: 'Dilni',
     tabFlyers: 'Afishe',
@@ -291,6 +310,10 @@ const STRINGS = {
     loginHeading: 'cageneve.ch — Administration',
     passwordPlaceholder: 'Mot de passe',
     loginBtn: 'Se connecter',
+    captchaLabel: 'Question de sécurité : combien font',
+    captchaPlaceholder: 'Réponse',
+    captchaBtn: 'Continuer',
+    captchaNew: '↻ Nouvelle question',
     headerSuffix: 'Administration',
     logoutBtn: 'Se déconnecter',
     tabFlyers: 'Affiches',
@@ -391,6 +414,57 @@ function setStatus(el, msg, ok) {
   el.className = 'status-msg ' + (ok ? 'ok' : 'err');
 }
 
+// ---------------- CAPTCHA ----------------
+// Step 1 of the login: solve a small math question (checked by the server),
+// which yields a short-lived pass that /api/login requires.
+let captchaChallenge = null;
+let captchaPass = null;
+
+function showCaptchaStep() {
+  captchaPass = null;
+  document.getElementById('passwordStep').classList.add('hidden');
+  document.getElementById('captchaStep').classList.remove('hidden');
+  document.getElementById('passwordInput').value = '';
+  loadCaptcha();
+}
+
+function loadCaptcha() {
+  const q = document.getElementById('captchaQuestion');
+  const input = document.getElementById('captchaInput');
+  q.textContent = '…';
+  input.value = '';
+  api('/api/captcha').then(function (c) {
+    captchaChallenge = c.challenge;
+    q.textContent = c.question;
+    input.focus();
+  }).catch(function (e) { document.getElementById('loginError').textContent = e.message; });
+}
+
+function submitCaptcha() {
+  const btn = document.getElementById('captchaBtn');
+  const err = document.getElementById('loginError');
+  err.textContent = '';
+  btn.disabled = true;
+  api('/api/captcha', { jsonBody: { challenge: captchaChallenge, answer: document.getElementById('captchaInput').value } })
+    .then(function (r) {
+      captchaPass = r.pass;
+      document.getElementById('captchaStep').classList.add('hidden');
+      document.getElementById('passwordStep').classList.remove('hidden');
+      document.getElementById('passwordInput').focus();
+    })
+    .catch(function (e) { err.textContent = e.message; loadCaptcha(); })
+    .finally(function () { btn.disabled = false; });
+}
+
+document.getElementById('captchaBtn').addEventListener('click', submitCaptcha);
+document.getElementById('captchaInput').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') submitCaptcha();
+});
+document.getElementById('captchaNew').addEventListener('click', function (e) {
+  e.preventDefault();
+  loadCaptcha();
+});
+
 // ---------------- LOGIN ----------------
 document.getElementById('loginBtn').addEventListener('click', doLogin);
 document.getElementById('passwordInput').addEventListener('keydown', function (e) {
@@ -403,7 +477,7 @@ function doLogin() {
   const err = document.getElementById('loginError');
   err.textContent = '';
   btn.disabled = true;
-  api('/api/login', { jsonBody: { password: pw } })
+  api('/api/login', { jsonBody: { password: pw, captchaPass: captchaPass } })
     .then(function () {
       loginScreen.classList.add('hidden');
       document.querySelector('.login-lang-wrap').classList.add('hidden');
@@ -411,7 +485,7 @@ function doLogin() {
       loadFlyers();
       loadDocs();
     })
-    .catch(function (e) { err.textContent = e.message; })
+    .catch(function (e) { showCaptchaStep(); err.textContent = e.message; })
     .finally(function () { btn.disabled = false; });
 }
 
@@ -420,7 +494,7 @@ document.getElementById('logoutBtn').addEventListener('click', function () {
     app.classList.add('hidden');
     loginScreen.classList.remove('hidden');
     document.querySelector('.login-lang-wrap').classList.remove('hidden');
-    document.getElementById('passwordInput').value = '';
+    showCaptchaStep();
   });
 });
 
@@ -686,7 +760,7 @@ api('/api/events').then(function () {
   app.classList.remove('hidden');
   loadFlyers();
   loadDocs();
-}).catch(function () { /* stay on login screen */ });
+}).catch(function () { showCaptchaStep(); /* stay on login screen */ });
 </script>
 </body>
 </html>
