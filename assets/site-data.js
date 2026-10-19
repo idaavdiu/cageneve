@@ -56,12 +56,44 @@
     }).join('');
   }
 
+  function renderBoard(members) {
+    const grid = document.querySelector('.board-grid');
+    if (!grid) return;
+    grid.innerHTML = members.map(function (m) {
+      const role = '<div class="board-role"><span class="lang-sq">' + escapeHtml(m.role_sq) + '</span><span class="lang-fr">' + escapeHtml(m.role_fr) + '</span></div>';
+      const name = '<div class="board-name">' + escapeHtml(m.name) + '</div>';
+      const photo = m.photo
+        ? '<div class="board-photo"><img loading="lazy" src="' + hrefFor(m.photo) + '" alt="' + escapeHtml(m.name) + '"' +
+          (m.photo_position ? ' style="object-position:' + escapeHtml(m.photo_position) + '"' : '') + '></div>'
+        : '';
+      const bio = (m.bio_sq || m.bio_fr)
+        ? '<div class="board-bio"><div class="board-bio-text"><span class="lang-sq">' + escapeHtml(m.bio_sq) + '</span><span class="lang-fr">' + escapeHtml(m.bio_fr) + '</span></div>' +
+          '<button class="board-bio-toggle" onclick="toggleBio(this)"><span class="lang-sq">Më shumë ↓</span><span class="lang-fr">Plus ↓</span></button></div>'
+        : '';
+      return '<div class="board-card' + (photo || bio ? ' featured' : '') + '">' + photo + role + name + bio + '</div>';
+    }).join('');
+    showBioToggles();
+    grid.querySelectorAll('img').forEach(function (img) { img.addEventListener('load', showBioToggles); });
+  }
+
+  // Show "more" only on bios that are actually cut off by the line clamp.
+  function showBioToggles() {
+    document.querySelectorAll('.board-bio-text').forEach(function (text) {
+      const btn = text.nextElementSibling;
+      if (btn && btn.classList.contains('board-bio-toggle') && text.scrollHeight - text.clientHeight > 2) {
+        btn.style.display = 'inline-block';
+      }
+    });
+  }
+
   Promise.all([
     fetch('data/events.json').then(r => r.json()),
-    fetch('data/documents.json').then(r => r.json())
-  ]).then(function ([events, documents]) {
+    fetch('data/documents.json').then(r => r.json()),
+    fetch('data/board.json').then(r => r.json())
+  ]).then(function ([events, documents, board]) {
     renderEvents(events);
     renderDocuments(documents);
+    renderBoard(board);
   }).catch(function (err) {
     console.error('Failed to load site data', err);
   });

@@ -80,7 +80,11 @@ input[type=text],input[type=date],input[type=file],input[type=url],input[type=pa
 .year-head .year-sub{font-size:12px;color:var(--gray);margin-left:.5rem}
 
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:50;padding:1rem}
-.modal{background:#fff;border-radius:8px;padding:1.25rem;max-width:420px;width:100%}
+.modal{background:#fff;border-radius:8px;padding:1.25rem;max-width:560px;width:100%;max-height:90vh;overflow:auto}
+textarea{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:4px;font-size:14px;font-family:inherit;resize:vertical;min-height:90px}
+.modal label{display:block;font-size:12px;color:var(--gray);margin-bottom:3px}
+.modal .row{display:block}
+.modal .check{display:flex;align-items:center;gap:.4rem;font-size:13px;color:var(--black)}
 .modal h3{margin-bottom:1rem;font-size:15px}
 .modal .row{margin-bottom:.75rem}
 .modal-actions{display:flex;justify-content:flex-end;gap:.5rem;margin-top:1rem}
@@ -127,6 +131,7 @@ input[type=text],input[type=date],input[type=file],input[type=url],input[type=pa
     <div class="tabs">
       <button class="tab-btn active" data-tab="flyers" data-i18n="tabFlyers"></button>
       <button class="tab-btn" data-tab="docs" data-i18n="tabDocs"></button>
+      <button class="tab-btn" data-tab="board" data-i18n="tabBoard"></button>
     </div>
 
     <!-- FLYERS TAB -->
@@ -154,6 +159,35 @@ input[type=text],input[type=date],input[type=file],input[type=url],input[type=pa
         <p class="drag-hint" data-i18n="dragHint"></p>
         <div class="status-msg" id="flyerOrderStatus"></div>
         <div id="flyerList" data-i18n="loading"></div>
+      </div>
+    </div>
+
+    <!-- BOARD (KRYESIA) TAB -->
+    <div id="tab-board" class="hidden">
+      <div class="card">
+        <h3 data-i18n="newMemberHeading"></h3>
+        <form id="newMemberForm">
+          <div class="row">
+            <div class="field"><label data-i18n="labelName"></label><input type="text" id="memberName" required></div>
+            <div class="field"><label data-i18n="labelPhotoOptional"></label><input type="file" id="memberPhoto" accept="image/*"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label data-i18n="labelRoleSq"></label><input type="text" id="memberRoleSq" placeholder="Anëtar" required></div>
+            <div class="field"><label data-i18n="labelRoleFr"></label><input type="text" id="memberRoleFr" placeholder="Membre" required></div>
+          </div>
+          <div class="row">
+            <div class="field"><label data-i18n="labelBioSq"></label><textarea id="memberBioSq"></textarea></div>
+            <div class="field"><label data-i18n="labelBioFr"></label><textarea id="memberBioFr"></textarea></div>
+          </div>
+          <button type="submit" class="btn btn-red" data-i18n="btnAddMember"></button>
+          <div class="status-msg" id="memberFormStatus"></div>
+        </form>
+      </div>
+      <div class="card">
+        <h3 data-i18n="existingMembersHeading"></h3>
+        <p class="drag-hint" data-i18n="dragHint"></p>
+        <div class="status-msg" id="boardOrderStatus"></div>
+        <div id="boardList" data-i18n="loading"></div>
       </div>
     </div>
 
@@ -200,6 +234,22 @@ const STRINGS = {
     loginHeading: 'cageneve.ch — Verwaltung',
     passwordPlaceholder: 'Passwort',
     loginBtn: 'Anmelden',
+    tabBoard: 'Kryesia',
+    newMemberHeading: 'Neue Person hinzufügen',
+    existingMembersHeading: 'Personen in der Kryesia',
+    labelName: 'Name',
+    labelRoleSq: 'Rolle (Albanisch)',
+    labelRoleFr: 'Rolle (Französisch)',
+    labelPhotoOptional: 'Foto (optional)',
+    labelNewPhoto: 'Neues Foto (optional – leer lassen, um das aktuelle zu behalten)',
+    labelBioSq: 'Text (Albanisch, optional)',
+    labelBioFr: 'Text (Französisch, optional)',
+    btnAddMember: 'Hinzufügen',
+    memberAdded: 'Person hinzugefügt.',
+    noMembers: 'Noch keine Personen.',
+    editMemberTitle: 'Person bearbeiten',
+    confirmDeleteMember: 'Diese Person wirklich entfernen?',
+    btnRemovePhoto: 'Foto entfernen',
     captchaLabel: 'Sicherheitsfrage: Wie viel ist',
     captchaPlaceholder: 'Antwort',
     captchaBtn: 'Weiter',
@@ -255,6 +305,22 @@ const STRINGS = {
     loginHeading: 'cageneve.ch — Administrim',
     passwordPlaceholder: 'Fjalëkalimi',
     loginBtn: 'Hyr',
+    tabBoard: 'Kryesia',
+    newMemberHeading: 'Shto person të ri',
+    existingMembersHeading: 'Anëtarët e Kryesisë',
+    labelName: 'Emri',
+    labelRoleSq: 'Roli (shqip)',
+    labelRoleFr: 'Roli (frëngjisht)',
+    labelPhotoOptional: 'Foto (opsionale)',
+    labelNewPhoto: 'Foto e re (opsionale – lëre bosh për ta mbajtur të tanishmen)',
+    labelBioSq: 'Teksti (shqip, opsional)',
+    labelBioFr: 'Teksti (frëngjisht, opsional)',
+    btnAddMember: 'Shto',
+    memberAdded: 'Personi u shtua.',
+    noMembers: 'Ende nuk ka persona.',
+    editMemberTitle: 'Ndrysho personin',
+    confirmDeleteMember: 'Ta heqësh vërtet këtë person?',
+    btnRemovePhoto: 'Hiq foton',
     captchaLabel: 'Pyetje sigurie: Sa bën',
     captchaPlaceholder: 'Përgjigja',
     captchaBtn: 'Vazhdo',
@@ -310,6 +376,22 @@ const STRINGS = {
     loginHeading: 'cageneve.ch — Administration',
     passwordPlaceholder: 'Mot de passe',
     loginBtn: 'Se connecter',
+    tabBoard: 'Comité',
+    newMemberHeading: 'Ajouter une personne',
+    existingMembersHeading: 'Membres du comité',
+    labelName: 'Nom',
+    labelRoleSq: 'Rôle (albanais)',
+    labelRoleFr: 'Rôle (français)',
+    labelPhotoOptional: 'Photo (facultative)',
+    labelNewPhoto: 'Nouvelle photo (facultative – laisser vide pour garder l’actuelle)',
+    labelBioSq: 'Texte (albanais, facultatif)',
+    labelBioFr: 'Texte (français, facultatif)',
+    btnAddMember: 'Ajouter',
+    memberAdded: 'Personne ajoutée.',
+    noMembers: 'Aucune personne pour l’instant.',
+    editMemberTitle: 'Modifier la personne',
+    confirmDeleteMember: 'Vraiment retirer cette personne ?',
+    btnRemovePhoto: 'Retirer la photo',
     captchaLabel: 'Question de sécurité : combien font',
     captchaPlaceholder: 'Réponse',
     captchaBtn: 'Continuer',
@@ -484,6 +566,7 @@ function doLogin() {
       app.classList.remove('hidden');
       loadFlyers();
       loadDocs();
+      loadBoard();
     })
     .catch(function (e) { showCaptchaStep(); err.textContent = e.message; })
     .finally(function () { btn.disabled = false; });
@@ -503,8 +586,9 @@ document.querySelectorAll('.tab-btn').forEach(function (btn) {
   btn.addEventListener('click', function () {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('tab-flyers').classList.toggle('hidden', btn.dataset.tab !== 'flyers');
-    document.getElementById('tab-docs').classList.toggle('hidden', btn.dataset.tab !== 'docs');
+    ['flyers', 'docs', 'board'].forEach(function (name) {
+      document.getElementById('tab-' + name).classList.toggle('hidden', btn.dataset.tab !== name);
+    });
   });
 });
 
@@ -514,6 +598,15 @@ function openModal(title, fields, onSave) {
   modal.className = 'modal';
   modal.innerHTML = '<h3>' + escapeHtml(title) + '</h3>' +
     fields.map(function (f) {
+      if (f.type === 'textarea') {
+        return '<div class="row"><label>' + escapeHtml(f.label) + '</label><textarea rows="6" data-key="' + f.key + '">' + escapeHtml(f.value || '') + '</textarea></div>';
+      }
+      if (f.type === 'file') {
+        return '<div class="row"><label>' + escapeHtml(f.label) + '</label><input type="file" accept="' + (f.accept || '') + '" data-key="' + f.key + '"></div>';
+      }
+      if (f.type === 'checkbox') {
+        return '<div class="row"><label class="check"><input type="checkbox" data-key="' + f.key + '"> ' + escapeHtml(f.label) + '</label></div>';
+      }
       return '<div class="row"><label>' + escapeHtml(f.label) + '</label><input type="' + (f.type || 'text') + '" data-key="' + f.key + '" value="' + escapeHtml(f.value || '') + '"></div>';
     }).join('') +
     '<div class="modal-actions"><button class="btn btn-ghost" id="modalCancel">' + escapeHtml(t('btnCancel')) + '</button><button class="btn btn-red" id="modalSave">' + escapeHtml(t('btnSave')) + '</button></div>' +
@@ -525,7 +618,9 @@ function openModal(title, fields, onSave) {
   document.getElementById('modalCancel').addEventListener('click', closeModal);
   document.getElementById('modalSave').addEventListener('click', function () {
     const values = {};
-    modal.querySelectorAll('[data-key]').forEach(function (inp) { values[inp.dataset.key] = inp.value; });
+    modal.querySelectorAll('[data-key]').forEach(function (inp) {
+      values[inp.dataset.key] = inp.type === 'file' ? (inp.files[0] || null) : inp.type === 'checkbox' ? inp.checked : inp.value;
+    });
     const statusEl = document.getElementById('modalStatus');
     const saveBtn = document.getElementById('modalSave');
     saveBtn.disabled = true;
@@ -626,6 +721,97 @@ document.getElementById('newFlyerForm').addEventListener('submit', function (e) 
       setStatus(statusEl, t('flyerUploaded'), true);
       e.target.reset();
       loadFlyers();
+    })
+    .catch(function (err) { setStatus(statusEl, err.message, false); })
+    .finally(function () { submitBtn.disabled = false; });
+});
+
+// ---------------- BOARD (KRYESIA) ----------------
+function loadBoard() {
+  const list = document.getElementById('boardList');
+  list.textContent = t('loading');
+  api('/api/board').then(function (members) {
+    if (!members.length) { list.innerHTML = '<p style="color:var(--gray);font-size:13px">' + escapeHtml(t('noMembers')) + '</p>'; return; }
+    list.innerHTML = members.map(function (m) {
+      return '<div class="item" data-id="' + m.id + '">' +
+        '<span class="drag-handle" aria-hidden="true">⠿</span>' +
+        (m.photo ? '<img src="' + escapeHtml(hrefFor(m.photo)) + '" alt="" style="object-position:' + escapeHtml(m.photo_position || 'top') + '">' : '<div class="icon">👤</div>') +
+        '<div class="info"><div class="title">' + escapeHtml(m.name) + '</div>' +
+        '<div class="sub">' + escapeHtml(m.role_sq) + ' · ' + escapeHtml(m.role_fr) + '</div></div>' +
+        '<div class="actions"><button class="btn btn-ghost edit-member">' + escapeHtml(t('btnEdit')) + '</button><button class="btn btn-danger del-member">' + escapeHtml(t('btnDelete')) + '</button></div>' +
+        '</div>';
+    }).join('');
+    makeSortable(list, document.getElementById('boardOrderStatus'), function (ids) {
+      return api('/api/board', { method: 'PATCH', jsonBody: { ids: ids } });
+    }, loadBoard);
+    list.querySelectorAll('.edit-member').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const id = btn.closest('.item').dataset.id;
+        const m = members.find(x => x.id === id);
+        const fields = [
+          { key: 'name', label: t('labelName'), value: m.name },
+          { key: 'role_sq', label: t('labelRoleSq'), value: m.role_sq },
+          { key: 'role_fr', label: t('labelRoleFr'), value: m.role_fr },
+          { key: 'photoFile', label: m.photo ? t('labelNewPhoto') : t('labelPhotoOptional'), type: 'file', accept: 'image/*' }
+        ];
+        if (m.photo) fields.push({ key: 'removePhoto', label: t('btnRemovePhoto'), type: 'checkbox' });
+        fields.push(
+          { key: 'bio_sq', label: t('labelBioSq'), type: 'textarea', value: m.bio_sq },
+          { key: 'bio_fr', label: t('labelBioFr'), type: 'textarea', value: m.bio_fr }
+        );
+        openModal(t('editMemberTitle'), fields, function (values) {
+          const body = { id: id, name: values.name.trim(), role_sq: values.role_sq.trim(), role_fr: values.role_fr.trim(), bio_sq: values.bio_sq.trim(), bio_fr: values.bio_fr.trim() };
+          let photoStep = Promise.resolve();
+          if (values.photoFile) {
+            photoStep = uploadFile('board/' + values.photoFile.name, values.photoFile)
+              .then(function (blob) { body.photo = blob.url; body.photo_position = null; });
+          } else if (values.removePhoto) {
+            body.photo = null; body.photo_position = null;
+          }
+          return photoStep
+            .then(function () { return api('/api/board', { method: 'PUT', jsonBody: body }); })
+            .then(loadBoard);
+        });
+      });
+    });
+    list.querySelectorAll('.del-member').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const id = btn.closest('.item').dataset.id;
+        if (!confirm(t('confirmDeleteMember'))) return;
+        api('/api/board?id=' + encodeURIComponent(id), { method: 'DELETE' }).then(loadBoard);
+      });
+    });
+  }).catch(function (e) { list.textContent = t('errorPrefix') + e.message; });
+}
+
+document.getElementById('newMemberForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const statusEl = document.getElementById('memberFormStatus');
+  const submitBtn = e.target.querySelector('button[type=submit]');
+  const file = document.getElementById('memberPhoto').files[0];
+  const body = {
+    name: document.getElementById('memberName').value.trim(),
+    role_sq: document.getElementById('memberRoleSq').value.trim(),
+    role_fr: document.getElementById('memberRoleFr').value.trim(),
+    bio_sq: document.getElementById('memberBioSq').value.trim(),
+    bio_fr: document.getElementById('memberBioFr').value.trim()
+  };
+
+  submitBtn.disabled = true;
+  let photoStep = Promise.resolve();
+  if (file) {
+    setStatus(statusEl, t('uploadingImage'), true);
+    photoStep = uploadFile('board/' + file.name, file).then(function (blob) { body.photo = blob.url; });
+  }
+  photoStep
+    .then(function () {
+      setStatus(statusEl, t('saving'), true);
+      return api('/api/board', { jsonBody: body });
+    })
+    .then(function () {
+      setStatus(statusEl, t('memberAdded'), true);
+      e.target.reset();
+      loadBoard();
     })
     .catch(function (err) { setStatus(statusEl, err.message, false); })
     .finally(function () { submitBtn.disabled = false; });
@@ -760,6 +946,7 @@ api('/api/events').then(function () {
   app.classList.remove('hidden');
   loadFlyers();
   loadDocs();
+  loadBoard();
 }).catch(function () { showCaptchaStep(); /* stay on login screen */ });
 </script>
 </body>

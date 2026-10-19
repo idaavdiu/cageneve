@@ -1,0 +1,172 @@
+[
+  {
+    "id": "mbr-nasuf-nuhiu",
+    "name": "Nasuf Nuhiu",
+    "role_sq": "Kryetar",
+    "role_fr": "Président",
+    "photo": "Nasufi.jpg",
+    "photo_position": null,
+    "bio_sq": "I lindur në vitin 1975 në Stubëll të Poshtme, komuna e Vitisë. Ish-anëtar i kryesisë së LAPSH-it, ish-anëtar i FC Kosova Gjenevë dhe anëtar i shoqatës së gjyqtarëve të futbollit ACGF. Punon si sekretar në sindikatën «Unia» në Gjenevë.",
+    "bio_fr": "Né en 1975 à Stubëll e Poshtme, commune de Viti. Ancien membre du comité de la LAPSH, ancien membre du FC Kosova Genève et membre de l'association des arbitres de football ACGF. Travaille en tant que secrétaire au syndicat «Unia» à Genève."
+  },
+  {
+    "id": "mbr-linda-rexhaj-maliqi",
+    "name": "Linda Rexhaj Maliqi",
+    "role_sq": "Sekretare",
+    "role_fr": "Secrétaire",
+    "photo": "Linda.jpg",
+    "photo_position": null,
+    "bio_sq": "E lindur në vitin 1975. E diplomuar në Drejtësi në Universitetin e Zagrebit në vitin 1997. E punësuar si këshilltare juridike në Sindikatën «Unia» në Gjenevë. Themeluese e nismës «Zëri i Gruas LIRA», si dhe e platformës e-drejtajote.ch.",
+    "bio_fr": "Née en 1975. Diplômée en droit de l'Université de Zagreb en 1997. Employée comme conseillère juridique au syndicat «Unia» à Genève. Fondatrice de l'initiative «Zëri i Gruas LIRA», ainsi que de la plateforme e-drejtajote.ch."
+  },
+  {
+    "id": "mbr-ali-mehmeti",
+    "name": "Ali Mehmeti",
+    "role_sq": "Arkëtar",
+    "role_fr": "Trésorier",
+    "photo": "Ali Mehmeti.jpg",
+    "photo_position": null,
+    "bio_sq": "I lindur në vitin 1956 në Leskovc, Serbi. Rritur dhe shkolluar në Prishtinë, i diplomuar në Fakultetin Elektroteknik – telekomunikacion me elektronikë, të Universitetit të Prishtinës, në vitin 1980. Punoi mbi 10 vjet në Telekomin e Kosovës në Prishtinë nga u dëbua dhunshëm në vitin 1990. Autor i «Fjalorit Enciklopedik nga Teknologjia e Informacionit», Prishtinë 2006. Autor i tregimit dramatik dokumentar «Në kërkim të Idesë», Prishtinë 2021. Krijues dhe administrator i kësaj hapësire Interneti. Sekretar shumëvjeçar në Lidhjen e Arsimtarëve dhe Prindërve Shqiptarë – Gjenevë.",
+    "bio_fr": "Né en 1956 à Leskovc, Serbie. Élevé et scolarisé à Prishtina, diplômé de la Faculté d'Électrotechnique – télécommunications et électronique, Université de Prishtina, en 1980. A travaillé plus de 10 ans aux Télécoms du Kosovo à Prishtina, d'où il fut expulsé de force en 1990. Auteur du «Dictionnaire Encyclopédique des Technologies de l'Information», Prishtina 2006. Auteur du récit dramatique documentaire «À la recherche d'Idea», Prishtina 2021. Créateur et administrateur de ce site Internet. Secrétaire de longue date à la Ligue des Enseignants et Parents Albanais – Genève."
+  },
+  {
+    "id": "mbr-bardh-ramadani",
+    "name": "Bardh Ramadani",
+    "role_sq": "Anëtar i Kryesisë",
+    "role_fr": "Membre du Comité",
+    "photo": "Bardhi.jpg",
+    "photo_position": "center 20%",
+    "bio_sq": "I lindur në vitin 1976. Aktivist shumëvjeçar dhe solist i dalluar. Anëtar i Kryesisë dhe udhëheqës i grupit muzikor «Hareja».",
+    "bio_fr": "Né en 1976. Activiste de longue date et soliste distingué. Membre du Comité et dirigeant du groupe musical «Hareja»."
+  },
+  {
+    "id": "mbr-blerim-bunjaku",
+    "name": "Blerim Bunjaku",
+    "role_sq": "Anëtar",
+    "role_fr": "Membre",
+    "photo": "Blerim Bunjaku.jpg",
+    "photo_position": null,
+    "bio_sq": "I lindur në Gjilan më 1974. Shkollën e mesme e filloi në Gjilan dhe e përfundoi në Gjenevë, drejtimi artet plastike. Ka punuar mbi 26 vite në Postën Zvicerane si postier dhe menaxher. Është gjithashtu terapeut i diplomuar në masazh dhe drenazh limfatik terapeutik. Aktualisht punëtor socio-profesional. Në kohën e lirë merret me pikturë dhe muzikë – anëtar i grupit «Hareja».",
+    "bio_fr": "Né en 1974 à Gjilan. Études secondaires commencées à Gjilan et terminées à Genève, filière arts plastiques. A travaillé plus de 26 ans à La Poste Suisse comme facteur et manager. Également thérapeute diplômé en massage et drainage lymphatique thérapeutique. Actuellement travailleur socio-professionnel. Dans son temps libre, il s'adonne à la peinture et à la musique – membre du groupe «Hareja»."
+  },
+  {
+    "id": "mbr-lutfi-rexha",
+    "name": "Lutfi Rexha",
+    "role_sq": "Anëtar",
+    "role_fr": "Membre",
+    "photo": "Lutfi Rexha.jpg",
+    "photo_position": null,
+    "bio_sq": "I lindur në gusht të vitit 1965 në fshatin Varosh të komunës së Ferizajit. Në Zvicër qëndron nga viti 1984, ku me profesion është ngjyrosës i diplomuar në ndërtimtari me CFC.",
+    "bio_fr": "Né en août 1965 dans le village de Varosh, commune de Ferizaj. Établi en Suisse depuis 1984, où il exerce comme peintre en bâtiment diplômé avec CFC."
+  },
+  {
+    "id": "mbr-enver-nesushta",
+    "name": "Enver Nesushta",
+    "role_sq": "Anëtar",
+    "role_fr": "Membre",
+    "photo": "Enver Nesushta.jpg",
+    "photo_position": null,
+    "bio_sq": "I lindur në vitin 1975 në Podujevë. Gjimnazi «Aleksandër Xhuvani», Podujevë 1989–1993. Fakulteti Juridik – Universiteti i Prishtinës 1993–1997. Programi për Shitje, Marketing, Komunikim dhe Menaxhim Projektesh në Prva Group, Lublanë, Slloveni 2006–2008. Përvojë profesionale: Dukagjini GROUP – Këshilltar shitjesh, Prishtinë 2003–2007; Fondi Slloveno-Kosovar i Pensioneve – Këshilltar 2007–2012; Kolegji ESLG, Prishtinë – Drejtor i Marrëdhënieve me Publikun 2011–2013; LAPSH – Lidhja e Arsimtarëve dhe Prindërve Shqiptarë në Gjenevë – Sekretar nga 2018 deri sot.",
+    "bio_fr": "Né en 1975 à Podujevë. Lycée «Aleksandër Xhuvani», Podujevë 1989–1993. Faculté de Droit – Université de Prishtina 1993–1997. Programme Vente, Marketing, Communication et Gestion de Projets, Prva Group, Ljubljana, Slovénie 2006–2008. Expérience professionnelle : Dukagjini GROUP – Conseiller commercial, Prishtina 2003–2007 ; Fonds slovéno-kosovar des Retraites – Conseiller 2007–2012 ; Collège ESLG, Prishtina – Directeur des Relations Publiques 2011–2013 ; LAPSH – Ligue des Enseignants et Parents Albanais à Genève – Secrétaire depuis 2018."
+  },
+  {
+    "id": "mbr-nergjivane-sejdiu-ferati",
+    "name": "Nergjivane Sejdiu Ferati",
+    "role_sq": "Anëtare",
+    "role_fr": "Membre",
+    "photo": "nergjivane sejdiu ferati.jpg",
+    "photo_position": null,
+    "bio_sq": "E lindur në vitin 1972 në Ferizaj. Ka botuar përmbledhjen e poezive «Përse jetoj» (ku vazhdon ende të shkruajë). Recitatore, moderatore dhe realizuese e disa projekteve humanitare, ndër të cilat veçohet projekti «Një paruke, një jetë».",
+    "bio_fr": "Née en 1972 à Ferizaj. Auteure du recueil de poèmes «Përse jetoj» (qu'elle continue d'enrichir). Récitante, modératrice et réalisatrice de plusieurs projets humanitaires, dont le projet remarquable «Një paruke, një jetë» (Une perruque, une vie)."
+  },
+  {
+    "id": "mbr-blerta-murtezi",
+    "name": "Blerta Murtezi",
+    "role_sq": "Anëtare",
+    "role_fr": "Membre",
+    "photo": "blerta murtezi.jpg",
+    "photo_position": null,
+    "bio_sq": "E lindur në vitin 1975 në Prishtinë. Ka studiuar laborante e biokimisë. Punon si përkthyese në Croix-Rouge dhe Baasha në Gjenevë, duke kontribuar në punë humanitare dhe komunikim ndërkulturor.",
+    "bio_fr": "Née en 1975 à Prishtina. A étudié comme laborantine en biochimie. Travaille comme traductrice à la Croix-Rouge et chez Baasha à Genève, contribuant au travail humanitaire et à la communication interculturelle."
+  },
+  {
+    "id": "mbr-valbone-zabaku",
+    "name": "Valbone Zabaku",
+    "role_sq": "Anëtare",
+    "role_fr": "Membre",
+    "photo": "Valbone Zabaku.jpg",
+    "photo_position": null,
+    "bio_sq": "E lindur në vitin 1970. Bachelor në Fakultetin e Edukimit në Prishtinë (1988–1991), e diplomuar në Fakultetin Pedagogjik të Universitetit të Prishtinës. Nga viti 2018 deri më 2021 mësimdhënëse e gjuhës shqipe në UPA – Universiteti Shqiptar i Gjenevës.",
+    "bio_fr": "Née en 1970. Bachelor à la Faculté d'Éducation de Prishtina (1988–1991), diplômée de la Faculté Pédagogique de l'Université de Prishtina. De 2018 à 2021, enseignante de langue albanaise à l'UPA – Université Albanaise de Genève."
+  },
+  {
+    "id": "mbr-fadil-selmani",
+    "name": "Fadil Selmani",
+    "role_sq": "Anëtar",
+    "role_fr": "Membre",
+    "photo": null,
+    "photo_position": null,
+    "bio_sq": "",
+    "bio_fr": ""
+  },
+  {
+    "id": "mbr-blerim-ibrahimi",
+    "name": "Blerim Ibrahimi",
+    "role_sq": "Anëtar",
+    "role_fr": "Membre",
+    "photo": null,
+    "photo_position": null,
+    "bio_sq": "",
+    "bio_fr": ""
+  },
+  {
+    "id": "mbr-remi-kabashi",
+    "name": "Remi Kabashi",
+    "role_sq": "Anëtar",
+    "role_fr": "Membre",
+    "photo": null,
+    "photo_position": null,
+    "bio_sq": "",
+    "bio_fr": ""
+  },
+  {
+    "id": "mbr-qendrim-nebiu",
+    "name": "Qendrim Nebiu",
+    "role_sq": "Anëtar",
+    "role_fr": "Membre",
+    "photo": null,
+    "photo_position": null,
+    "bio_sq": "",
+    "bio_fr": ""
+  },
+  {
+    "id": "mbr-rifat-haxhijaj",
+    "name": "Rifat Haxhijaj",
+    "role_sq": "Anëtar",
+    "role_fr": "Membre",
+    "photo": null,
+    "photo_position": null,
+    "bio_sq": "",
+    "bio_fr": ""
+  },
+  {
+    "id": "mbr-njazi-ibrahimi",
+    "name": "Njazi Ibrahimi",
+    "role_sq": "Anëtar",
+    "role_fr": "Membre",
+    "photo": null,
+    "photo_position": null,
+    "bio_sq": "",
+    "bio_fr": ""
+  },
+  {
+    "id": "mbr-vesa-ilazi",
+    "name": "Vesa Ilazi",
+    "role_sq": "Anëtare",
+    "role_fr": "Membre",
+    "photo": null,
+    "photo_position": null,
+    "bio_sq": "",
+    "bio_fr": ""
+  }
+]
