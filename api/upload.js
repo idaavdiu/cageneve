@@ -10,7 +10,7 @@ module.exports = async function handler(req, res) {
     const jsonResponse = await handleUpload({
       body: req.body,
       request: req,
-      token: process.env.BLOBREADWRITETOKEN || process.env.BLOB_READ_WRITE_TOKEN,
+      token: process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOBREADWRITETOKEN,
       onBeforeGenerateToken: async function () {
         return {
           allowedContentTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/jpg', 'application/pdf'],
