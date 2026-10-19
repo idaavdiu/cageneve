@@ -22,6 +22,12 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(250,250,248,0.97
 .lang-btn{font-size:11px;font-weight:500;padding:5px 11px;border:none;cursor:pointer;border-radius:1px;transition:all 0.2s;background:transparent;color:var(--gray)}
 .lang-btn.active{background:var(--red);color:white}
 .nav-cta{background:var(--red);color:white;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:7px 14px;border:none;cursor:pointer;text-decoration:none;display:inline-block}
+.nav-login{display:inline-flex;align-items:center;gap:6px;color:var(--gray);border:1px solid #d6d2cc;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:6px 11px;text-decoration:none;transition:all 0.2s}
+.nav-login:hover{color:var(--black);border-color:var(--black)}
+.nav-login .nav-login-text .lang-sq,.nav-login .nav-login-text .lang-fr{display:inline}
+body.fr .nav-login .nav-login-text .lang-sq{display:none}
+body.sq .nav-login .nav-login-text .lang-fr{display:none}
+.nav-login-item{display:none}
 .hamburger{display:none}
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--black);padding:80px 3rem 4rem;position:relative;overflow:hidden;text-align:center}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a 0%,#2d1a1a 50%,#1a1a1a 100%)}
@@ -157,6 +163,8 @@ body.sq .lang-fr{display:none}
   nav{padding:0 1rem}
   .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(250,250,248,0.98);border-bottom:1px solid #e0ddd8;padding:1rem 1.5rem;gap:0.8rem}
   .nav-links.open{display:flex}
+  .nav-login{display:none}
+  .nav-links .nav-login-item{display:list-item}
   .hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none}
   .hamburger span{width:22px;height:2px;background:var(--black);display:block}
   section{padding:4rem 1.5rem}
@@ -188,12 +196,14 @@ body.sq .lang-fr{display:none}
     <li><a href="#docs"><span class="lang-sq">Dokumente</span><span class="lang-fr">Documents</span></a></li>
     <li><a href="#sponsors"><span class="lang-sq">Sponsorë</span><span class="lang-fr">Sponsors</span></a></li>
     <li><a href="#contact"><span class="lang-sq">Kontakt</span><span class="lang-fr">Contact</span></a></li>
+    <li class="nav-login-item"><a href="admin.html"><span class="lang-sq">Hyrje (Login)</span><span class="lang-fr">Connexion (Login)</span></a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-switch">
       <button class="lang-btn active" onclick="setLang('sq')">SQ</button>
       <button class="lang-btn" onclick="setLang('fr')">FR</button>
     </div>
+    <a href="admin.html" class="nav-login" title="Login" aria-label="Login"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="nav-login-text"><span class="lang-sq">Hyrje</span><span class="lang-fr">Connexion</span></span></a>
     <a href="#membership" class="nav-cta"><span class="lang-sq">Bëhu anëtar</span><span class="lang-fr">Devenir membre</span></a>
   </div>
 </nav>
