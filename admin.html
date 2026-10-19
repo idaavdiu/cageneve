@@ -38,7 +38,7 @@ header .lang-btn{color:#aaa}
 .login-lang-wrap{max-width:360px;margin:1.5rem auto 0;display:flex;justify-content:center}
 
 /* tabs */
-.tabs{display:flex;gap:.5rem;margin-bottom:1.25rem}
+.tabs{display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap}
 .tab-btn{padding:8px 16px;border:1px solid var(--border);background:#fff;border-radius:6px;cursor:pointer;font-size:14px}
 .tab-btn.active{background:var(--black);color:#fff;border-color:var(--black)}
 
@@ -132,6 +132,7 @@ textarea{width:100%;padding:8px 10px;border:1px solid var(--border);border-radiu
       <button class="tab-btn active" data-tab="flyers" data-i18n="tabFlyers"></button>
       <button class="tab-btn" data-tab="docs" data-i18n="tabDocs"></button>
       <button class="tab-btn" data-tab="board" data-i18n="tabBoard"></button>
+      <button class="tab-btn" data-tab="sponsors" data-i18n="tabSponsors"></button>
     </div>
 
     <!-- FLYERS TAB -->
@@ -191,6 +192,30 @@ textarea{width:100%;padding:8px 10px;border:1px solid var(--border);border-radiu
       </div>
     </div>
 
+    <!-- SPONSORS TAB -->
+    <div id="tab-sponsors" class="hidden">
+      <div class="card">
+        <h3 data-i18n="newSponsorHeading"></h3>
+        <form id="newSponsorForm">
+          <div class="row">
+            <div class="field"><label data-i18n="labelLogo"></label><input type="file" id="sponsorLogo" accept="image/*" required></div>
+            <div class="field"><label data-i18n="labelSponsorName"></label><input type="text" id="sponsorName" required></div>
+          </div>
+          <div class="row">
+            <div class="field"><label data-i18n="labelWebsiteOptional"></label><input type="url" id="sponsorUrl" placeholder="https://..."></div>
+          </div>
+          <button type="submit" class="btn btn-red" data-i18n="btnAddSponsor"></button>
+          <div class="status-msg" id="sponsorFormStatus"></div>
+        </form>
+      </div>
+      <div class="card">
+        <h3 data-i18n="existingSponsorsHeading"></h3>
+        <p class="drag-hint" data-i18n="dragHint"></p>
+        <div class="status-msg" id="sponsorOrderStatus"></div>
+        <div id="sponsorList" data-i18n="loading"></div>
+      </div>
+    </div>
+
     <!-- DOCUMENTS TAB -->
     <div id="tab-docs" class="hidden">
       <div class="card">
@@ -234,6 +259,18 @@ const STRINGS = {
     loginHeading: 'cageneve.ch — Verwaltung',
     passwordPlaceholder: 'Passwort',
     loginBtn: 'Anmelden',
+    tabSponsors: 'Sponsoren',
+    newSponsorHeading: 'Neuen Sponsor hinzufügen',
+    existingSponsorsHeading: 'Sponsoren',
+    labelLogo: 'Logo / Bild',
+    labelNewLogo: 'Neues Logo (optional – leer lassen, um das aktuelle zu behalten)',
+    labelSponsorName: 'Name des Sponsors',
+    labelWebsiteOptional: 'Website (optional)',
+    btnAddSponsor: 'Hinzufügen',
+    sponsorAdded: 'Sponsor hinzugefügt.',
+    noSponsors: 'Noch keine Sponsoren.',
+    editSponsorTitle: 'Sponsor bearbeiten',
+    confirmDeleteSponsor: 'Diesen Sponsor wirklich entfernen?',
     tabBoard: 'Kryesia',
     newMemberHeading: 'Neue Person hinzufügen',
     existingMembersHeading: 'Personen in der Kryesia',
@@ -305,6 +342,18 @@ const STRINGS = {
     loginHeading: 'cageneve.ch — Administrim',
     passwordPlaceholder: 'Fjalëkalimi',
     loginBtn: 'Hyr',
+    tabSponsors: 'Sponsorët',
+    newSponsorHeading: 'Shto sponsor të ri',
+    existingSponsorsHeading: 'Sponsorët',
+    labelLogo: 'Logo / foto',
+    labelNewLogo: 'Logo e re (opsionale – lëre bosh për ta mbajtur të tanishmen)',
+    labelSponsorName: 'Emri i sponsorit',
+    labelWebsiteOptional: 'Faqja e internetit (opsionale)',
+    btnAddSponsor: 'Shto',
+    sponsorAdded: 'Sponsori u shtua.',
+    noSponsors: 'Ende nuk ka sponsorë.',
+    editSponsorTitle: 'Ndrysho sponsorin',
+    confirmDeleteSponsor: 'Ta heqësh vërtet këtë sponsor?',
     tabBoard: 'Kryesia',
     newMemberHeading: 'Shto person të ri',
     existingMembersHeading: 'Anëtarët e Kryesisë',
@@ -376,6 +425,18 @@ const STRINGS = {
     loginHeading: 'cageneve.ch — Administration',
     passwordPlaceholder: 'Mot de passe',
     loginBtn: 'Se connecter',
+    tabSponsors: 'Sponsors',
+    newSponsorHeading: 'Ajouter un sponsor',
+    existingSponsorsHeading: 'Sponsors',
+    labelLogo: 'Logo / image',
+    labelNewLogo: 'Nouveau logo (facultatif – laisser vide pour garder l’actuel)',
+    labelSponsorName: 'Nom du sponsor',
+    labelWebsiteOptional: 'Site web (facultatif)',
+    btnAddSponsor: 'Ajouter',
+    sponsorAdded: 'Sponsor ajouté.',
+    noSponsors: 'Aucun sponsor pour l’instant.',
+    editSponsorTitle: 'Modifier le sponsor',
+    confirmDeleteSponsor: 'Vraiment retirer ce sponsor ?',
     tabBoard: 'Comité',
     newMemberHeading: 'Ajouter une personne',
     existingMembersHeading: 'Membres du comité',
@@ -567,6 +628,7 @@ function doLogin() {
       loadFlyers();
       loadDocs();
       loadBoard();
+      loadSponsors();
     })
     .catch(function (e) { showCaptchaStep(); err.textContent = e.message; })
     .finally(function () { btn.disabled = false; });
@@ -586,7 +648,7 @@ document.querySelectorAll('.tab-btn').forEach(function (btn) {
   btn.addEventListener('click', function () {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    ['flyers', 'docs', 'board'].forEach(function (name) {
+    ['flyers', 'docs', 'board', 'sponsors'].forEach(function (name) {
       document.getElementById('tab-' + name).classList.toggle('hidden', btn.dataset.tab !== name);
     });
   });
@@ -817,6 +879,80 @@ document.getElementById('newMemberForm').addEventListener('submit', function (e)
     .finally(function () { submitBtn.disabled = false; });
 });
 
+// ---------------- SPONSORS ----------------
+function loadSponsors() {
+  const list = document.getElementById('sponsorList');
+  list.textContent = t('loading');
+  api('/api/sponsors').then(function (sponsors) {
+    if (!sponsors.length) { list.innerHTML = '<p style="color:var(--gray);font-size:13px">' + escapeHtml(t('noSponsors')) + '</p>'; return; }
+    list.innerHTML = sponsors.map(function (s) {
+      return '<div class="item" data-id="' + s.id + '">' +
+        '<span class="drag-handle" aria-hidden="true">⠿</span>' +
+        '<img src="' + escapeHtml(hrefFor(s.logo)) + '" alt="" style="object-fit:contain;background:#fff;border:1px solid var(--border)">' +
+        '<div class="info"><div class="title">' + escapeHtml(s.name) + '</div>' +
+        '<div class="sub">' + escapeHtml(s.url || '—') + '</div></div>' +
+        '<div class="actions"><button class="btn btn-ghost edit-sponsor">' + escapeHtml(t('btnEdit')) + '</button><button class="btn btn-danger del-sponsor">' + escapeHtml(t('btnDelete')) + '</button></div>' +
+        '</div>';
+    }).join('');
+    makeSortable(list, document.getElementById('sponsorOrderStatus'), function (ids) {
+      return api('/api/sponsors', { method: 'PATCH', jsonBody: { ids: ids } });
+    }, loadSponsors);
+    list.querySelectorAll('.edit-sponsor').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const id = btn.closest('.item').dataset.id;
+        const sp = sponsors.find(x => x.id === id);
+        openModal(t('editSponsorTitle'), [
+          { key: 'name', label: t('labelSponsorName'), value: sp.name },
+          { key: 'url', label: t('labelWebsiteOptional'), type: 'url', value: sp.url || '' },
+          { key: 'logoFile', label: t('labelNewLogo'), type: 'file', accept: 'image/*' }
+        ], function (values) {
+          const body = { id: id, name: values.name.trim(), url: values.url.trim() || null };
+          let logoStep = Promise.resolve();
+          if (values.logoFile) {
+            logoStep = uploadFile('sponsors/' + values.logoFile.name, values.logoFile)
+              .then(function (blob) { body.logo = blob.url; });
+          }
+          return logoStep
+            .then(function () { return api('/api/sponsors', { method: 'PUT', jsonBody: body }); })
+            .then(loadSponsors);
+        });
+      });
+    });
+    list.querySelectorAll('.del-sponsor').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const id = btn.closest('.item').dataset.id;
+        if (!confirm(t('confirmDeleteSponsor'))) return;
+        api('/api/sponsors?id=' + encodeURIComponent(id), { method: 'DELETE' }).then(loadSponsors);
+      });
+    });
+  }).catch(function (e) { list.textContent = t('errorPrefix') + e.message; });
+}
+
+document.getElementById('newSponsorForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const statusEl = document.getElementById('sponsorFormStatus');
+  const submitBtn = e.target.querySelector('button[type=submit]');
+  const file = document.getElementById('sponsorLogo').files[0];
+  const name = document.getElementById('sponsorName').value.trim();
+  const url = document.getElementById('sponsorUrl').value.trim() || null;
+  if (!file) { setStatus(statusEl, t('errorPickImage'), false); return; }
+
+  submitBtn.disabled = true;
+  setStatus(statusEl, t('uploadingImage'), true);
+  uploadFile('sponsors/' + file.name, file)
+    .then(function (blob) {
+      setStatus(statusEl, t('saving'), true);
+      return api('/api/sponsors', { jsonBody: { name: name, logo: blob.url, url: url } });
+    })
+    .then(function () {
+      setStatus(statusEl, t('sponsorAdded'), true);
+      e.target.reset();
+      loadSponsors();
+    })
+    .catch(function (err) { setStatus(statusEl, err.message, false); })
+    .finally(function () { submitBtn.disabled = false; });
+});
+
 // ---------------- DOCUMENTS ----------------
 function loadDocs() {
   const container = document.getElementById('docYears');
@@ -947,6 +1083,7 @@ api('/api/events').then(function () {
   loadFlyers();
   loadDocs();
   loadBoard();
+  loadSponsors();
 }).catch(function () { showCaptchaStep(); /* stay on login screen */ });
 </script>
 </body>

@@ -86,14 +86,27 @@
     });
   }
 
+  function renderSponsors(sponsors) {
+    const grid = document.querySelector('.sponsors-grid');
+    if (!grid) return;
+    grid.innerHTML = sponsors.map(function (s) {
+      const img = '<img loading="lazy" src="' + hrefFor(s.logo) + '" alt="' + escapeHtml(s.name) + '">';
+      return s.url
+        ? '<a class="sponsor-card" href="' + escapeHtml(s.url) + '" target="_blank" rel="noopener">' + img + '</a>'
+        : '<div class="sponsor-card">' + img + '</div>';
+    }).join('');
+  }
+
   Promise.all([
     fetch('data/events.json').then(r => r.json()),
     fetch('data/documents.json').then(r => r.json()),
-    fetch('data/board.json').then(r => r.json())
-  ]).then(function ([events, documents, board]) {
+    fetch('data/board.json').then(r => r.json()),
+    fetch('data/sponsors.json').then(r => r.json())
+  ]).then(function ([events, documents, board, sponsors]) {
     renderEvents(events);
     renderDocuments(documents);
     renderBoard(board);
+    renderSponsors(sponsors);
   }).catch(function (err) {
     console.error('Failed to load site data', err);
   });
