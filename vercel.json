@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/CLAUDE.md", "destination": "/", "permanent": false }
+  ]
+}
