@@ -128,9 +128,10 @@ Bei Blob-Fehlern zuerst prüfen, ob `BLOB_READ_WRITE_TOKEN` richtig gesetzt ist.
   Rechen-Captcha vor dem Admin-Passwort, Kryesia und Sponsoren im Admin verwaltbar
   (inkl. Fotos/Logos, Texte, optionaler Sponsor-Link), Handy-Kopfzeile neu angeordnet
   (Logo links; Sprache, „Bëhu anëtar“ und ☰ rechts), automatisches Backup eingerichtet.
+  Admin-Passwort neu gesetzt; doppelte Variable `ADMINPASSWORD` (ohne Unterstrich) in Vercel gelöscht.
+  Ida soll Passwörter nicht mehr in den Chat schreiben – Admin-Tests lieber von ihr selbst durchführen lassen.
 
 ## Offene Punkte / Ideen
 
-- Ida sollte das Admin-Passwort ändern (es stand am 19.10.2026 in einem Chat).
 - Bei 320 px Breite (sehr alte Handys) ist die Homepage ca. 20 px zu breit – nicht von der Kopfzeile,
   sondern von einem anderen Element; bisher nicht behoben.
