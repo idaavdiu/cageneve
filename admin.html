@@ -160,7 +160,16 @@ input[type=text],input[type=date],input[type=file],input[type=url],input[type=pa
 <div id="overlay" class="overlay hidden"></div>
 
 <script type="module">
-import { upload } from 'https://esm.sh/@vercel/blob@2.8.2/client';
+import { put } from 'https://esm.sh/@vercel/blob@2.8.2/client';
+
+// Fetch the client token through our own api() helper so the server's real
+// error message is shown instead of the SDK's generic "Failed to retrieve the client token".
+async function uploadFile(pathname, file) {
+  const res = await api('/api/upload', {
+    jsonBody: { type: 'blob.generate-client-token', payload: { pathname, clientPayload: null, multipart: false } }
+  });
+  return put(pathname, file, { access: 'public', token: res.clientToken, contentType: file.type || undefined });
+}
 
 const loginScreen = document.getElementById('loginScreen');
 const app = document.getElementById('app');
@@ -494,7 +503,7 @@ document.getElementById('newFlyerForm').addEventListener('submit', function (e) 
 
   submitBtn.disabled = true;
   setStatus(statusEl, t('uploadingImage'), true);
-  upload('flyers/' + file.name, file, { access: 'public', handleUploadUrl: '/api/upload' })
+  uploadFile('flyers/' + file.name, file)
     .then(function (blob) {
       setStatus(statusEl, t('saving'), true);
       return api('/api/events', { jsonBody: { image: blob.url, date, title_sq, title_fr, video_url } });
@@ -581,7 +590,7 @@ function loadDocs() {
 
         submitBtn.disabled = true;
         setStatus(statusEl, t('uploadingFile'), true);
-        upload('documents/' + year + '/' + file.name, file, { access: 'public', handleUploadUrl: '/api/upload' })
+        uploadFile('documents/' + year + '/' + file.name, file)
           .then(function (blob) {
             setStatus(statusEl, t('saving'), true);
             return api('/api/documents', { jsonBody: { action: 'add-doc', year, file: blob.url, title_sq, title_fr } });

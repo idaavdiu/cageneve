@@ -10,7 +10,7 @@ module.exports = async function handler(req, res) {
     const jsonResponse = await handleUpload({
       body: req.body,
       request: req,
-      token: process.env.BLOBREADWRITETOKEN,
+      token: process.env.BLOBREADWRITETOKEN || process.env.BLOB_READ_WRITE_TOKEN,
       onBeforeGenerateToken: async function () {
         return {
           allowedContentTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/jpg', 'application/pdf'],
@@ -24,6 +24,7 @@ module.exports = async function handler(req, res) {
     });
     return res.status(200).json(jsonResponse);
   } catch (err) {
+    console.error('upload error:', err);
     return res.status(400).json({ error: err.message });
   }
 };
