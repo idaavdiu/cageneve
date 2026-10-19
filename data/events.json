@@ -1,15 +1,5 @@
 [
   {
-    "id": "evt-2026-09-27-jo-ne-emrin-tim",
-    "date": "2026-09-27",
-    "date_display_sq": null,
-    "date_display_fr": null,
-    "image": "Foto AFISHE/27 shtator 2026 jo ne emrin tim.jpeg",
-    "title_sq": "Jo në emrin tim!",
-    "title_fr": "Pas en mon nom !",
-    "video_url": null
-  },
-  {
     "id": "evt-2026-08-30-dita-nderkombetare-e-personave-te-zhduku",
     "date": "2026-08-30",
     "date_display_sq": null,
@@ -17,6 +7,16 @@
     "image": "Foto AFISHE/30 gusht 2026.jpeg",
     "title_sq": "Dita Ndërkombëtare e Personave të Zhdukur me Forcë",
     "title_fr": "Journée internationale des personnes disparues de force",
+    "video_url": null
+  },
+  {
+    "id": "evt-2026-09-27-jo-ne-emrin-tim",
+    "date": "2026-09-27",
+    "date_display_sq": null,
+    "date_display_fr": null,
+    "image": "Foto AFISHE/27 shtator 2026 jo ne emrin tim.jpeg",
+    "title_sq": "Jo në emrin tim!",
+    "title_fr": "Pas en mon nom !",
     "video_url": null
   },
   {
